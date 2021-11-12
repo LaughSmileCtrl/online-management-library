@@ -3,6 +3,10 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\User\ReturnedBookController;
+use App\Http\Controllers\User\DonateBookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +28,27 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::prefix('book')
+        ->name('book.')
+        ->group(function () {
+    Route::get('/', [BookController::class, 'index'])->name('index');
+});
+
+Route::prefix('user')
+        ->name('user.')
+        ->group(function () {
+    Route::get('/book', [ReturnedBookController::class, 'index'])->name('book');
+    Route::get('/donate-book', [DonateBookController::class, 'index'])->name('donate-book');
+
+});
+
 
 require __DIR__.'/auth.php';
