@@ -8,7 +8,7 @@
                 </label>
                 <input
                     type="text"
-                    placeholder="judul"
+                    placeholder="Judul"
                     class="input input-primary input-bordered"
                     autofocus
                 />
@@ -37,7 +37,7 @@
                 </label>
                 <textarea
                     class="textarea h-24 textarea-bordered textarea-primary"
-                    placeholder="pesan"
+                    placeholder="Pesan"
                 ></textarea>
             </div>
             <button class="btn btn-primary btn-block my-5">Simpan</button>
