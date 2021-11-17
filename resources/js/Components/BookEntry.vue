@@ -66,7 +66,7 @@
         </label>
         <input
           type="text"
-          placeholder="judul buku"
+          placeholder="Judul Buku"
           class="input input-primary input-bordered"
           autofocus
         />
@@ -77,7 +77,7 @@
         </label>
         <input
           type="text"
-          placeholder="penulis"
+          placeholder="Penulis"
           class="input input-primary input-bordered"
         />
       </div>
@@ -87,7 +87,7 @@
         </label>
         <input
           type="text"
-          placeholder="penerbit"
+          placeholder="Penerbit"
           class="input input-primary input-bordered"
         />
       </div>
@@ -98,7 +98,7 @@
           </label>
           <input
             type="text"
-            placeholder="tahun terbit"
+            placeholder="Tahun Terbit"
             class="input input-primary input-bordered"
           />
         </div>
@@ -108,7 +108,7 @@
           </label>
           <input
             type="number"
-            placeholder="jumlah"
+            placeholder="Jumlah"
             class="input input-primary input-bordered"
           />
         </div>
@@ -120,9 +120,8 @@
             <option disabled="disabled" selected="selected">
               Pilih Kondisi
             </option>
-            <option>telekinesis</option>
-            <option>time travel</option>
-            <option>invisibility</option>
+            <option>Baru</option>
+            <option>Bekas</option>
           </select>
         </div>
       </div>
@@ -132,7 +131,7 @@
         </label>
         <textarea
           class="textarea h-24 textarea-bordered textarea-primary"
-          placeholder="deskripsi buku"
+          placeholder="Deskripsi Buku"
         ></textarea>
       </div>
       <button
