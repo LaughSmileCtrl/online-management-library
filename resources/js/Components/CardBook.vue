@@ -25,8 +25,8 @@
       <p>Penulis: lorem ipsum</p>
       <p>Tahun Terbit: 2021</p>
       <div class="absolute bottom-9 pb-5">
-        kembalikan sebelum<br />
-        12 Novvemmber 2021
+        Kembalikan Sebelum<br />
+        12 November 2021
       </div>
       <div class="btn-group absolute bottom-5 right-5 shadow rounded">
         <button class="btn btn-sm btn-neutral" @click="openDesc">Detail</button>
