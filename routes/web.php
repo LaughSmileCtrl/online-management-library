@@ -10,6 +10,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\Book\ReturnedBookController;
 use App\Http\Controllers\Book\DonateBookController;
 use App\Http\Controllers\Member\MemberController;
+use App\Http\Controllers\StatisticsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,12 +53,16 @@ Route::prefix('user')
     Route::get('/book', [ReturnedBookController::class, 'index'])->name('book');
 });
 
+Route::get('/user/penalties', [PenaltiesController::class, 'show'])->name('penalties.show');
+Route::get('/penalties', [PenaltiesController::class, 'index'])->name('penalties.index');
+
 Route::resource('user', MemberController::class);
 
-Route::get('/penalties', [PenaltiesController::class, 'index'])->name('penalties.list');
 
 Route::resource('donate-book', DonateBookController::class);
 
 Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement.index');
+
+Route::get('/statistics', [StatisticsController::class, 'index'])->name('statistics.index');
 
 require __DIR__.'/auth.php';

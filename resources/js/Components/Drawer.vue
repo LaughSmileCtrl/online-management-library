@@ -177,19 +177,25 @@
             <NavLink :href="route('donate-book.create')" :active="route().current('donate-book.create')" icon="fa fa-hand-holding-heart">Sumbang Buku</NavLink>
           </li>
           <li class="items-center">
+            <NavLink :href="route('penalties.show')" :active="route().current('penalties.show')" icon="fas fa-file-invoice-dollar">Tagihan Denda</NavLink>
+          </li>
+          <li class="items-center">
             <NavLink :href="route('user.index')" :active="route().current('user.index')" icon="fas fa-users">Member</NavLink>
           </li>
           <li class="items-center">
             <NavLink :href="route('book.index')" :active="route().current('book.index')" icon="fas fa-stream">Tabel Buku</NavLink>
           </li>
           <li class="item-center">
-            <NavLink :href="route('penalties.list')" :active="route().current('penalties.list')" icon="fas fa-money-bill-wave">List Denda</NavLink>
+            <NavLink :href="route('penalties.index')" :active="route().current('penalties.index')" icon="fas fa-money-bill-wave">List Denda</NavLink>
           </li>
           <li class="item-center">
             <NavLink :href="route('donate-book.index')" :active="route().current('donate-book.index')" icon="fas fa-book-open">List Donasi Buku</NavLink>
           </li>
           <li class="item-center">
             <NavLink :href="route('announcement.index')" :active="route().current('announcement.index')" icon="fas fa-bullhorn">Pengumuman</NavLink>
+          </li>
+          <li class="item-center">
+            <NavLink :href="route('statistics.index')" :active="route().current('statistics.index')" icon="fas fa-chart-bar">Statistik</NavLink>
           </li>
         </ul>
       </div>

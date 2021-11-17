@@ -12,4 +12,9 @@ class PenaltiesController extends Controller
     {
         return Inertia::render('App/Penalties/PenaltiesList');
     }
+
+    public function show()
+    {
+        return Inertia::render('App/Penalties/UserPenalties');
+    }
 }
