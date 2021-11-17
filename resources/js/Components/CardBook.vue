@@ -225,12 +225,12 @@ export default {
               </div>
               <div class="w-2/3 px-8 text-left">
                   <h3 class="font-bold text-2xl mb-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h3>
-                  <h3 class="font-bold inline-block">Penulis </h3><h3>Lorem Ipsum Dolor</h3>
-                  <h3 class="font-bold inline-block">Penerbit </h3><h3>adipisicing</h3>
-                  <h3 class="font-bold inline-block">Tahun Terbit</h3><h3>2021</h3>
-                  <h3 class="font-bold inline-block">Stock </h3><h3>5</h3>
-                  <h3 class="font-bold inline-block">Kategori </h3><h3>Baru</h3>
-                  <h3 class="font-bold inline-block">Deskripsi</h3>
+                  <h5 class="font-bold inline-block">Penulis</h5><h4>Lorem Ipsum Dolor</h4>
+                  <h5 class="font-bold inline-block mt-3">Penerbit</h5><h4>Adipisicing</h4>
+                  <h5 class="font-bold inline-block mt-3">Tahun Terbit</h5><h4>2021</h4>
+                  <h5 class="font-bold inline-block mt-3">Stock</h5><h4>5</h4>
+                  <h5 class="font-bold inline-block mt-3">Kategori</h5><h4>Baru</h4>
+                  <h5 class="font-bold inline-block mt-3">Deskripsi</h5>
                   <p class="text-md">
                       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore odit quis 
                       minus magni alias doloremque eveniet veniam eum minima sint? Ipsam sunt id, 
