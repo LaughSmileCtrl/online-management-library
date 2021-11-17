@@ -168,13 +168,19 @@
 				    <NavLink :href="route('dashboard')" :active="route().current('dashboard')" icon="fas fa-tv">Dashboard</NavLink>
           </li>
         <li class="items-center">
-          <NavLink :href="route('book.index')" :active="route().current('book.index')" icon="fa fa-book">Katalog</NavLink>
+          <NavLink :href="route('book.catalog')" :active="route().current('book.catalog')" icon="fa fa-book">Katalog</NavLink>
         </li>
         <li class="items-center">
           <NavLink :href="route('user.book')" :active="route().current('user.book')" icon="fa fa-undo">Pengembalian</NavLink>
         </li>
         <li class="items-center">
           <NavLink :href="route('user.donate-book')" :active="route().current('user.donate-book')" icon="fa fa-hand-holding-heart">Sumbang Buku</NavLink>
+        </li>
+         <li class="items-center">
+          <NavLink :href="route('user.index')" :active="route().current('user.index')" icon="fas fa-users">Member</NavLink>
+        </li>
+        <li class="items-center">
+          <NavLink :href="route('book.index')" :active="route().current('book.index')" icon="fas fa-stream">Tabel Buku</NavLink>
         </li>
         </ul>
       </div>

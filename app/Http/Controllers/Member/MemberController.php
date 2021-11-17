@@ -1,17 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Member;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class BookController extends Controller
+class MemberController extends Controller
 {
-    public function catalog()
-    {
-        return Inertia::render('App/Book/Catalog');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +15,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        return Inertia::render('App/Book/BookTable');
+        return Inertia::render('App/Member/Member');
     }
 
     /**

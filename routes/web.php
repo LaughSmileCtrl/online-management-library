@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\User\ReturnedBookController;
-use App\Http\Controllers\User\DonateBookController;
+use App\Http\Controllers\Book\ReturnedBookController;
+use App\Http\Controllers\Book\DonateBookController;
+use App\Http\Controllers\Member\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::prefix('book')
         ->name('book.')
         ->group(function () {
+    Route::get('/catalog', [BookController::class, 'catalog'])->name('catalog');
     Route::get('/', [BookController::class, 'index'])->name('index');
 });
 
@@ -47,8 +49,8 @@ Route::prefix('user')
         ->group(function () {
     Route::get('/book', [ReturnedBookController::class, 'index'])->name('book');
     Route::get('/donate-book', [DonateBookController::class, 'index'])->name('donate-book');
-
 });
 
+Route::resource('user', MemberController::class);
 
 require __DIR__.'/auth.php';

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,6 +10,6 @@ class ReturnedBookController extends Controller
 {
     public function index()
     {
-        return Inertia::render('App/User/BookBorrowed');
+        return Inertia::render('App/Book/BookBorrowed');
     }
 }
