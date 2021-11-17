@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AnnouncementController;
+use App\Http\Controllers\Admin\PenaltiesController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -48,9 +50,14 @@ Route::prefix('user')
         ->name('user.')
         ->group(function () {
     Route::get('/book', [ReturnedBookController::class, 'index'])->name('book');
-    Route::get('/donate-book', [DonateBookController::class, 'index'])->name('donate-book');
 });
 
 Route::resource('user', MemberController::class);
+
+Route::get('/penalties', [PenaltiesController::class, 'index'])->name('penalties.list');
+
+Route::resource('donate-book', DonateBookController::class);
+
+Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement.index');
 
 require __DIR__.'/auth.php';

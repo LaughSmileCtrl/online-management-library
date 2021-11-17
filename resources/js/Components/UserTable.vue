@@ -34,7 +34,13 @@
                     </td>
                     <td>Purple</td>
                     <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
+                        <div data-tip="ubah" class="tooltip">
+                            <button class="btn btn-ghost btn-sm" @click="$emit('editBook')"><i class="fa fa-edit text-yellow-500 hover:text-yellow-700"></i></button>
+                        </div>
+                        &nbsp;|&nbsp;
+                        <div data-tip="hapus" class="tooltip">
+                            <button class="btn btn-ghost btn-sm" @click="$emit('deleteBook')"><i class="fa fa-trash text-red-500 hover:text-red-700"></i></button>
+                        </div>
                     </th>
                 </tr>
                 <tr>
@@ -61,7 +67,13 @@
                     </td>
                     <td>Red</td>
                     <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
+                        <div data-tip="ubah" class="tooltip">
+                            <button class="btn btn-ghost btn-sm" @click="$emit('editBook')"><i class="fa fa-edit text-yellow-500 hover:text-yellow-700"></i></button>
+                        </div>
+                        &nbsp;|&nbsp;
+                        <div data-tip="hapus" class="tooltip">
+                            <button class="btn btn-ghost btn-sm" @click="$emit('deleteBook')"><i class="fa fa-trash text-red-500 hover:text-red-700"></i></button>
+                        </div>
                     </th>
                 </tr>
                 <tr>
@@ -88,7 +100,13 @@
                     </td>
                     <td>Crimson</td>
                     <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
+                        <div data-tip="ubah" class="tooltip">
+                            <button class="btn btn-ghost btn-sm" @click="$emit('editBook')"><i class="fa fa-edit text-yellow-500 hover:text-yellow-700"></i></button>
+                        </div>
+                        &nbsp;|&nbsp;
+                        <div data-tip="hapus" class="tooltip">
+                            <button class="btn btn-ghost btn-sm" @click="$emit('deleteBook')"><i class="fa fa-trash text-red-500 hover:text-red-700"></i></button>
+                        </div>
                     </th>
                 </tr>
                 <tr>
@@ -115,7 +133,13 @@
                     </td>
                     <td>Indigo</td>
                     <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
+                        <div data-tip="ubah" class="tooltip">
+                            <button class="btn btn-ghost btn-sm" @click="$emit('editBook')"><i class="fa fa-edit text-yellow-500 hover:text-yellow-700"></i></button>
+                        </div>
+                        &nbsp;|&nbsp;
+                        <div data-tip="hapus" class="tooltip">
+                            <button class="btn btn-ghost btn-sm" @click="$emit('deleteBook')"><i class="fa fa-trash text-red-500 hover:text-red-700"></i></button>
+                        </div>
                     </th>
                 </tr>
             </tbody>

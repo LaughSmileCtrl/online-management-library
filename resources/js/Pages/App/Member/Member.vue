@@ -1,12 +1,26 @@
 <template>
     <AuthLayout>
-        <div class="z-10 py-5">
-            <button class="btn btn-primary my-5" @click="addUser">
-                <i class="fa fa-plus"></i>&nbsp; Tambah User
-            </button>
+        <div id="user-table" v-show="onMain">
+            <div class="z-10 py-5">
+                <button class="btn btn-primary my-5" @click="addUser">
+                    <i class="fa fa-plus"></i>&nbsp; Tambah User
+                </button>
+            </div>
+            <div class="container m-5">
+                <UserTable @editBook="actionEdit" @deleteBook="actionDelete" />
+            </div>
         </div>
-        <div class="container m-5">
-            <UserTable />
+
+        <div id="add-book" v-show="!onMain">
+            <div class="py-5">
+                <button class="btn" @click="actionEdit">
+                    <i class="fas fa-arrow-left"></i>&nbsp; Kembali
+                </button>
+            </div>
+            <div class="xl:w-1/2 my-10 bg-white rounded-lg justify-center items-center h-full p-5">
+                <MemberEntry />
+                <button class="btn btn-primary btn-block">Simpan</button>
+            </div>
         </div>
     </AuthLayout>
     <MemberEntry v-show="false" ref="memberEntry" />
@@ -18,6 +32,11 @@ import UserTable from "@/Components/UserTable.vue";
 import MemberEntry from "@/Components/MemberEntry.vue"
 
 export default {
+    data() {
+        return {
+            onMain: true,
+        }
+    },
     components: {
         AuthLayout,
         UserTable,
@@ -34,6 +53,26 @@ export default {
                 cancelButtonText: "Batal",
                 reverseButtons: true,
                 html: this.$refs.memberEntry.$el.innerHTML,
+            });
+        },
+        actionEdit() {
+            this.onMain = !this.onMain;
+        },
+        actionDelete() {
+            this.$swal({
+                title: "Anda yakin?",
+                text:
+                    "Apakah anda benar akan mwnghapus buku ini?",
+                icon: "qustion",
+                showCloseButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Ya, hapus",
+                cancelButtonText: "Tidak",
+                reverseButtons: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.$swal("Tersimpan", "", "success");
+                }
             });
         },
     },

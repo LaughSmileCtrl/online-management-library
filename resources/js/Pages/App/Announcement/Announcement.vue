@@ -2,32 +2,35 @@
     <AuthLayout>
         <div id="book-table" v-show="onMain">
             <div class="py-5">
-                <button class="btn btn-primary my-5" @click="addUser">
-                    <i class="fa fa-plus"></i>&nbsp; Tambah Buku
+                <button class="btn btn-primary my-5" @click="changeView">
+                    <i class="fa fa-plus"></i>&nbsp; Tambah Pengumuman
                 </button>
             </div>
-            <div class="container m-5">
-                <BookTable
-                    @editBook="actionEdit"
-                    @deleteBook="actionDelete"
-                />
+            <div class="container flex flex-wrap gap-2 m-5">
+                <AnnouncementCard/>
+                <AnnouncementCard/>
+                <AnnouncementCard/>
+                <AnnouncementCard/>
+                <AnnouncementCard/>
             </div>
         </div>
         <div id="add-book" v-show="!onMain">
             <div class="py-5">
-                <button class="btn" @click="addUser">
+                <button class="btn" @click="changeView">
                     <i class="fas fa-arrow-left"></i>&nbsp; Kembali
                 </button>
             </div>
-            <BookEntry ref="bookEntry" @uploadedImage="previewFile" />
+            <div class="xl:w-1/2 my-10 bg-white rounded-lg justify-center items-center h-full p-5">
+                <AnnouncementEntry ref="bookEntry" />
+            </div>
         </div>
     </AuthLayout>
 </template>
 
 <script>
 import AuthLayout from "@/Layouts/Authenticated.vue";
-import BookTable from "@/Components/BookTable.vue";
-import BookEntry from "@/Components/BookEntry.vue";
+import AnnouncementCard from "@/Components/AnnouncementCard.vue";
+import AnnouncementEntry from "@/Components/AnnouncementEntry.vue";
 
 export default {
     data() {
@@ -37,18 +40,11 @@ export default {
     },
     components: {
         AuthLayout,
-        BookTable,
-        BookEntry,
+        AnnouncementCard,
+        AnnouncementEntry,
     },
     methods: {
-        addUser() {
-            this.onMain = !this.onMain;
-        },
-        previewFile(event) {
-            var img = event.target.files[0];
-            this.$refs.bookEntry.showImg(img);
-        },
-        actionEdit() {
+        changeView() {
             this.onMain = !this.onMain;
         },
         actionDelete() {
