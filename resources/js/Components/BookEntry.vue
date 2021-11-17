@@ -136,7 +136,6 @@
       </div>
       <button
         class="btn btn-primary btn-block my-5"
-        @click="$emit('try', $event)"
       >
         Simpan
       </button>
@@ -155,9 +154,6 @@ export default {
     };
   },
   methods: {
-    addImage() {
-      this.$emit("uploadedImage", $event);
-    },
     showImg(img) {
       this.imgIconClass = "hidden";
       this.imgClass = "h-56";

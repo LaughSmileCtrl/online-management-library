@@ -221,7 +221,7 @@ export default {
             "
           >
               <div class="flex flex-wrap justify-center w-2/3 md:w-1/3 h-full pb-10">
-                  <img src="./images/cover.jpg" class="rounded-lg h-56" />
+                  <img src="/images/cover.jpg" class="rounded-lg h-56" />
               </div>
               <div class="w-2/3 px-8 text-left">
                   <h3 class="font-bold text-2xl mb-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h3>

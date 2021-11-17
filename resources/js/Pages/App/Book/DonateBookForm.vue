@@ -26,9 +26,6 @@ export default {
         var img= event.target.files[0];
         this.$refs.bookEntry.showImg(img);
     },
-    cob(event) {
-        this.$swal('lol' + event);
-    }
   },
 };
 </script>
