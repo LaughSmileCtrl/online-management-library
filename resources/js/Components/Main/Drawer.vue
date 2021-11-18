@@ -203,10 +203,10 @@
   </nav>
 </template>
 <script>
-import UserDropdownComponent from "@/Components/UserDropdown.vue";
+import UserDropdownComponent from "@/Components/Main/UserDropdown.vue";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import { Link } from "@inertiajs/inertia-vue3";
-import NavLink from "@/Components/NavLink.vue";
+import NavLink from "@/Components/Main/NavLink.vue";
 
 export default {
   data() {

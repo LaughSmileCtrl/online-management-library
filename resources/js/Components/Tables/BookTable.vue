@@ -20,7 +20,7 @@
                     <td>Indigo</td>
                     <td>
                         <div data-tip="ubah" class="tooltip">
-                            <button class="btn btn-info btn-sm rounded-none rounded-l" @click="$emit('editBook')"><i class="fas fa-check-circle"></i></button>
+                            <button class="btn btn-info btn-sm rounded-none rounded-l" @click="$emit('editBook')"><i class="fas fa-edit"></i></button>
                         </div>
                         <div data-tip="hapus" class="tooltip">
                             <button class="btn btn-error btn-sm rounded-none rounded-r" @click="$emit('deleteBook')"><i class="fa fa-trash"></i></button>
@@ -35,7 +35,7 @@
                     <td>Purple</td>
                     <td>
                         <div data-tip="ubah" class="tooltip">
-                            <button class="btn btn-info btn-sm rounded-none rounded-l" @click="$emit('editBook')"><i class="fas fa-check-circle"></i></button>
+                            <button class="btn btn-info btn-sm rounded-none rounded-l" @click="$emit('editBook')"><i class="fas fa-edit"></i></button>
                         </div>
                         <div data-tip="hapus" class="tooltip">
                             <button class="btn btn-error btn-sm rounded-none rounded-r" @click="$emit('deleteBook')"><i class="fa fa-trash"></i></button>
@@ -50,7 +50,7 @@
                     <td>Yellow</td>
                     <td>
                         <div data-tip="ubah" class="tooltip">
-                            <button class="btn btn-info btn-sm rounded-none rounded-l" @click="$emit('editBook')"><i class="fas fa-check-circle"></i></button>
+                            <button class="btn btn-info btn-sm rounded-none rounded-l" @click="$emit('editBook')"><i class="fas fa-edit"></i></button>
                         </div>
                         <div data-tip="hapus" class="tooltip">
                             <button class="btn btn-error btn-sm rounded-none rounded-r" @click="$emit('deleteBook')"><i class="fa fa-trash"></i></button>
@@ -65,7 +65,7 @@
                     <td>Crimson</td>
                     <td>
                         <div data-tip="ubah" class="tooltip">
-                            <button class="btn btn-info btn-sm rounded-none rounded-l" @click="$emit('editBook')"><i class="fas fa-check-circle"></i></button>
+                            <button class="btn btn-info btn-sm rounded-none rounded-l" @click="$emit('editBook')"><i class="fas fa-edit"></i></button>
                         </div>
                         <div data-tip="hapus" class="tooltip">
                             <button class="btn btn-error btn-sm rounded-none rounded-r" @click="$emit('deleteBook')"><i class="fa fa-trash"></i></button>

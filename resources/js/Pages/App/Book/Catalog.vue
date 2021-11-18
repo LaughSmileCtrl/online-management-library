@@ -24,41 +24,12 @@
 		</div>
     </div>
     <div class="flex flex-wrap justify-center mb-9">
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
-      <CardBook type="0" />
+      <CardBook type="0" :isAgree="false" />
+      <CardBook type="1"/>
+      <CardBook type="0"/>
     </div>
   </AuthLayout>
+  <Agreement v-show="false" ref="modal" />
 </template>
 
 <script>
@@ -67,10 +38,13 @@ import AuthLayout from "@/Layouts/Authenticated.vue";
 import CardBook from "@/Components/CardBook.vue";
 
 export default {
-  components: {
-    Head,
-    AuthLayout,
-    CardBook,
-  },
+    components: {
+        Head,
+        AuthLayout,
+        CardBook,
+    },
+    methods: {
+        
+    },
 };
 </script>

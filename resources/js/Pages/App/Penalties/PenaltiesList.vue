@@ -8,7 +8,7 @@
 
 <script>
 import AuthLayout from "@/Layouts/Authenticated.vue";
-import PenaltiesTable from "@/Components/PenaltiesTable.vue";
+import PenaltiesTable from "@/Components/Tables/PenaltiesTable.vue";
 
 export default {
     components: {

@@ -1,14 +1,12 @@
 <template>
     <AuthLayout>
-        <div id="user-table" v-show="onMain">
+        <div id="user-table" v-show="onMain" class="mb-10">
             <div class="z-10 py-5">
                 <button class="btn btn-primary my-5" @click="addUser">
                     <i class="fa fa-plus"></i>&nbsp; Tambah User
                 </button>
             </div>
-            <div class="container m-5">
-                <UserTable @editBook="actionEdit" @deleteBook="actionDelete" />
-            </div>
+            <UserTable @editBook="actionEdit" @deleteBook="actionDelete" />
         </div>
 
         <div id="add-book" v-show="!onMain">
@@ -28,8 +26,8 @@
 
 <script>
 import AuthLayout from "@/Layouts/Authenticated.vue";
-import UserTable from "@/Components/UserTable.vue";
-import MemberEntry from "@/Components/MemberEntry.vue"
+import UserTable from "@/Components/Tables/UserTable.vue";
+import MemberEntry from "@/Components/Forms/MemberEntry.vue"
 
 export default {
     data() {

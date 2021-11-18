@@ -52,7 +52,7 @@
   <!-- End Navbar -->
 </template>
 <script>
-import UserDropdownComponent from "@/Components/UserDropdown.vue";
+import UserDropdownComponent from "@/Components/Main/UserDropdown.vue";
 export default {
   components: {
     UserDropdownComponent,

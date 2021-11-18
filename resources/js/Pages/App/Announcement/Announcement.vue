@@ -30,7 +30,7 @@
 <script>
 import AuthLayout from "@/Layouts/Authenticated.vue";
 import AnnouncementCard from "@/Components/AnnouncementCard.vue";
-import AnnouncementEntry from "@/Components/AnnouncementEntry.vue";
+import AnnouncementEntry from "@/Components/Forms/AnnouncementEntry.vue";
 
 export default {
     data() {

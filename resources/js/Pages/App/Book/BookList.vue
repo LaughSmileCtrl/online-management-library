@@ -1,17 +1,15 @@
 <template>
     <AuthLayout>
-        <div id="book-table" v-show="onMain">
+        <div id="book-table" v-show="onMain" class="mb-10">
             <div class="py-5">
                 <button class="btn btn-primary my-5" @click="addUser">
                     <i class="fa fa-plus"></i>&nbsp; Tambah Buku
                 </button>
             </div>
-            <div class="container m-5">
-                <BookTable
-                    @editBook="actionEdit"
-                    @deleteBook="actionDelete"
-                />
-            </div>
+            <BookTable
+                @editBook="actionEdit"
+                @deleteBook="actionDelete"
+            />
         </div>
         <div id="add-book" v-show="!onMain">
             <div class="py-5">
@@ -26,8 +24,8 @@
 
 <script>
 import AuthLayout from "@/Layouts/Authenticated.vue";
-import BookTable from "@/Components/BookTable.vue";
-import BookEntry from "@/Components/BookEntry.vue";
+import BookTable from "@/Components/Tables/BookTable.vue";
+import BookEntry from "@/Components/Forms/BookEntry.vue";
 
 export default {
     data() {

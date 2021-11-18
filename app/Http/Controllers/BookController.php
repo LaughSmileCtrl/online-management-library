@@ -19,7 +19,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        return Inertia::render('App/Book/BookTable');
+        return Inertia::render('App/Book/BookList');
     }
 
     /**

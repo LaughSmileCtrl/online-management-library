@@ -14,7 +14,7 @@
 <script>
 import { Head } from "@inertiajs/inertia-vue3";
 import AuthLayout from "@/Layouts/Authenticated.vue";
-import Alert from "@/Components/Alert.vue";
+import Alert from "@/Components/Announcement.vue";
 import CardBook from "@/Components/CardBook.vue";
 import CarouselBook from "@/Components/CarouselBook.vue"
 

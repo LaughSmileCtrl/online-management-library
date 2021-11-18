@@ -1,14 +1,12 @@
 <template>
     <AuthLayout>
-        <div class="container m-5">
             <BookDonateTable @admitBook="actionAdmit" @deleteBook="actionDelete" />
-        </div>
     </AuthLayout>
 </template>
 
 <script>
 import AuthLayout from "@/Layouts/Authenticated.vue";
-import BookDonateTable from "@/Components/BookDonateTable.vue";
+import BookDonateTable from "@/Components/Tables/BookDonateTable.vue";
 
 export default {
     components: {

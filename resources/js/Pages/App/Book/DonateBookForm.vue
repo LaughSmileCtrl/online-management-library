@@ -8,7 +8,7 @@
 <script>
 import { Head } from "@inertiajs/inertia-vue3";
 import AuthLayout from "@/Layouts/Authenticated.vue";
-import BookEntry from "@/Components/BookEntry.vue";
+import BookEntry from "@/Components/Forms/BookEntry.vue";
 
 export default {
   components: {

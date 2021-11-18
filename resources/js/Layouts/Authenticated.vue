@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import Drawer from "@/Components/Drawer.vue";
-import Navbar from "@/Components/Navbar.vue";
-import Footer from "@/Components/Footer.vue";
+import Drawer from "@/Components/Main/Drawer.vue";
+import Navbar from "@/Components/Main/Navbar.vue";
+import Footer from "@/Components/Main/Footer.vue";
 
 export default {
   components: {
