@@ -1,10 +1,10 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <div class=" collapse w-96 border rounded-box border-base-300 collapse-arrow " >
+            <div class=" collapse w-96 shadow rounded-box bg-white border-base-300 collapse-arrow " >
                 <input type="checkbox" />
                 <div class="collapse-title text-xl font-medium">
-                    <span class="badge badge-outline badge-accent block mb-2"><i class="fa fa-bell"></i> ini jenis pengumuman </span>
+                    <span class="badge badge-outline-white badge-accent block mb-2"><i class="fa fa-bell"></i> ini jenis pengumuman </span>
                     Ini adalah 
                 </div>
                 <div class="collapse-content">
