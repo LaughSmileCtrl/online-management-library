@@ -45,4 +45,19 @@ class User extends Authenticatable
     protected $attributes = [
         'is_admin' => false,
     ];
+
+    public function donateBooks()
+    {
+        return $this->hasMany(DonateBook::class);
+    }
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class);
+    }
+
+    public function penalties()
+    {
+        return $this->hasMany(Penalty::class);
+    }
 }

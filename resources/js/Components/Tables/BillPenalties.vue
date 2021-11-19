@@ -49,11 +49,13 @@
                     <td>7</td>
                     <td>7.000</td>
                 </tr>
+            </tbody>
+            <tfoot>
                 <tr>
-                    <td colspan="6" class="text-right font-bold">Jumlah Tagihan</td>
+                    <td colspan="6" class="text-center font-bold">Jumlah Tagihan</td>
                     <td>28.000</td>
                 </tr>
-            </tbody>
+            </tfoot>
         </table>
     </div>
 </template>

@@ -20260,7 +20260,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.cardTypes[this.type].text;
     },
     btnClassify: function btnClassify() {
-      return "btn btn-" + this.cardTypes[this.type].btnClass + " btn-sm ";
+      return "btn btn-" + this.cardTypes[this.type].btnClass + " btn-sm rounded-none rounded-br";
     }
   },
   methods: {
@@ -21951,7 +21951,10 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_10 = {
-  "class": "btn-group absolute bottom-5 right-5 shadow rounded"
+  "class": "opacity-50"
+};
+var _hoisted_11 = {
+  "class": "btn-group absolute bottom-0 right-0 shadow-2xl"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BookDescription = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BookDescription");
@@ -21964,10 +21967,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, "Tahun Terbit: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.book.year), 1
   /* TEXT */
-  ), $props.type == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [_hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.book.returnDate), 1
+  ), $props.type == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [_hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.book.returnDate), 1
   /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "btn btn-sm btn-neutral",
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "btn btn-sm btn-neutral rounded-none rounded-tl",
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.openDesc && $options.openDesc.apply($options, arguments);
     })
@@ -22790,7 +22793,7 @@ var _hoisted_1 = {
   "class": "overflow-x-auto"
 };
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<table class=\"table w-full table-compact\"><thead><tr><th></th><th>Judul Buku</th><th>Tanggal Pinjam</th><th>Tanggal Kembali</th><th>Tanggal Dikembalikan</th><th>Jumlah Hari Telat</th><th>Tagihan</th></tr></thead><tbody><tr><td>1</td><td>Lorem</td><td>12/10/2021</td><td>19/10/2021</td><td>26/10/2021</td><td>7</td><td>7.000</td></tr><tr><td>2</td><td>Lorem</td><td>12/10/2021</td><td>19/10/2021</td><td>26/10/2021</td><td>7</td><td>7.000</td></tr><tr><td>3</td><td>Lorem</td><td>12/10/2021</td><td>19/10/2021</td><td>26/10/2021</td><td>7</td><td>7.000</td></tr><tr><td>4</td><td>Lorem</td><td>12/10/2021</td><td>19/10/2021</td><td>26/10/2021</td><td>7</td><td>7.000</td></tr><tr><td colspan=\"6\" class=\"text-right font-bold\">Jumlah Tagihan</td><td>28.000</td></tr></tbody></table>", 1);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<table class=\"table w-full table-compact\"><thead><tr><th></th><th>Judul Buku</th><th>Tanggal Pinjam</th><th>Tanggal Kembali</th><th>Tanggal Dikembalikan</th><th>Jumlah Hari Telat</th><th>Tagihan</th></tr></thead><tbody><tr><td>1</td><td>Lorem</td><td>12/10/2021</td><td>19/10/2021</td><td>26/10/2021</td><td>7</td><td>7.000</td></tr><tr><td>2</td><td>Lorem</td><td>12/10/2021</td><td>19/10/2021</td><td>26/10/2021</td><td>7</td><td>7.000</td></tr><tr><td>3</td><td>Lorem</td><td>12/10/2021</td><td>19/10/2021</td><td>26/10/2021</td><td>7</td><td>7.000</td></tr><tr><td>4</td><td>Lorem</td><td>12/10/2021</td><td>19/10/2021</td><td>26/10/2021</td><td>7</td><td>7.000</td></tr></tbody><tfoot><tr><td colspan=\"6\" class=\"text-center font-bold\">Jumlah Tagihan</td><td>28.000</td></tr></tfoot></table>", 1);
 
 var _hoisted_3 = [_hoisted_2];
 function render(_ctx, _cache) {

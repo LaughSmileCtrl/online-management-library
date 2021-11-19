@@ -26,10 +26,12 @@
             <p class="opacity-50">Tahun Terbit: {{ book.year  }}</p>
             <div v-if="type == 1" class="absolute bottom-9 pb-5">
                 Kembalikan Sebelum<br />
-                {{ book.returnDate  }}
+                <p class="opacity-50">
+                    {{ book.returnDate  }}
+                </p>
             </div>
-            <div class="btn-group absolute bottom-5 right-5 shadow rounded">
-                <button class="btn btn-sm btn-neutral" @click="openDesc">
+            <div class="btn-group absolute bottom-0 right-0 shadow-2xl">
+                <button class="btn btn-sm btn-neutral rounded-none rounded-tl" @click="openDesc">
                     Detail
                 </button>
                 <button :class="btnClassify" @click="showModal">
@@ -93,7 +95,7 @@ export default {
             return this.cardTypes[this.type].text;
         },
         btnClassify() {
-            return "btn btn-" + this.cardTypes[this.type].btnClass + " btn-sm ";
+            return "btn btn-" + this.cardTypes[this.type].btnClass + " btn-sm rounded-none rounded-br";
         },
     },
     methods: {
