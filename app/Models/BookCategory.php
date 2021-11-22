@@ -11,6 +11,10 @@ class BookCategory extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public function book()
     {
         return $this->hasMany(Book::class);

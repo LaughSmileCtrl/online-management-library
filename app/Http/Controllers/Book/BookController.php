@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Book;
 
+use App\Http\Controllers\Controller;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -19,7 +21,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        return Inertia::render('App/Book/BookList');
+        $books = Book::with(['condition', 'category'])->paginate(15);
+        return Inertia::render('App/Book/BookList', ['books' => $books]);
     }
 
     /**
@@ -83,8 +86,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        //
+        dd($book);
+        return redirect()->back();
     }
 }

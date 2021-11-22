@@ -4,71 +4,30 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Favorite Color</th>
+                    <th>ISBN</th>
+                    <th>Judul Buku</th>
+                    <th>Penulis</th>
+                    <th>Penerbit</th>
+                    <th>Kategory</th>
+                    <th>Kondisi</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="hover" @click="$emit('rowClicked')">
-                    <th>5</th>
-                    <td>31xxxxx21</td>
-                    <td>Yancy Tear</td>
-                    <td>Community Outreach Specialist</td>
-                    <td>Indigo</td>
+                <tr v-for="(book, index) of books.data" :key="(book, index)" class="hover" @click="$emit('rowClicked')">
+                    <th>{{ index + 1 }}</th>
+                    <td>{{ book.isbn }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.publisher }}</td>
+                    <td>{{ book.category.name }}</td>
+                    <td>{{ book.condition.name }}</td>
                     <td>
                         <div data-tip="ubah" class="tooltip">
-                            <button class="btn btn-info btn-sm rounded-none rounded-l" @click="$emit('editBook')"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-info btn-sm rounded-none rounded-l" @click="$emit('editBook', book.id)"><i class="fas fa-edit"></i></button>
                         </div>
                         <div data-tip="hapus" class="tooltip">
-                            <button class="btn btn-error btn-sm rounded-none rounded-r" @click="$emit('deleteBook')"><i class="fa fa-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="hover" @click="$emit('rowClicked')">
-                    <th>6</th>
-                    <td>31xxxxx31</td>
-                    <td>Irma Vasilik</td>
-                    <td>Editor</td>
-                    <td>Purple</td>
-                    <td>
-                        <div data-tip="ubah" class="tooltip">
-                            <button class="btn btn-info btn-sm rounded-none rounded-l" @click="$emit('editBook')"><i class="fas fa-edit"></i></button>
-                        </div>
-                        <div data-tip="hapus" class="tooltip">
-                            <button class="btn btn-error btn-sm rounded-none rounded-r" @click="$emit('deleteBook')"><i class="fa fa-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="hover" @click="$emit('rowClicked')">
-                    <th>7</th>
-                    <td>31xxxxx43</td>
-                    <td>Meghann Durtnal</td>
-                    <td>Staff Accountant IV</td>
-                    <td>Yellow</td>
-                    <td>
-                        <div data-tip="ubah" class="tooltip">
-                            <button class="btn btn-info btn-sm rounded-none rounded-l" @click="$emit('editBook')"><i class="fas fa-edit"></i></button>
-                        </div>
-                        <div data-tip="hapus" class="tooltip">
-                            <button class="btn btn-error btn-sm rounded-none rounded-r" @click="$emit('deleteBook')"><i class="fa fa-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="hover" @click="$emit('rowClicked')">
-                    <th>8</th>
-                    <td>31xxxxx43</td>
-                    <td>Sammy Seston</td>
-                    <td>Accountant I</td>
-                    <td>Crimson</td>
-                    <td>
-                        <div data-tip="ubah" class="tooltip">
-                            <button class="btn btn-info btn-sm rounded-none rounded-l" @click="$emit('editBook')"><i class="fas fa-edit"></i></button>
-                        </div>
-                        <div data-tip="hapus" class="tooltip">
-                            <button class="btn btn-error btn-sm rounded-none rounded-r" @click="$emit('deleteBook')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-error btn-sm rounded-none rounded-r" @click="$emit('deleteBook', book.id)"><i class="fa fa-trash"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -76,3 +35,24 @@
         </table>
     </div>
 </template>
+
+<script>
+
+export default {
+    props: {
+        books: {
+            type: Object,
+            default : [
+                {
+                    isbn: 'xxxxx',
+                    title: 'xxxxx',
+                    author: 'xxxxx',
+                    category: 'xxxxx',
+                    condition: 'xxxxx',
+                }
+            ]
+        }
+    }
+}
+</script>
+

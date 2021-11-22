@@ -6,11 +6,12 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\BookController;
+use App\Http\Controllers\Book\BookController;
 use App\Http\Controllers\Book\ReturnedBookController;
 use App\Http\Controllers\Book\DonateBookController;
 use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,12 +46,14 @@ Route::prefix('book')
         ->group(function () {
     Route::get('/catalog', [BookController::class, 'catalog'])->name('catalog');
     Route::get('/', [BookController::class, 'index'])->name('index');
+    Route::delete('/{book}', [BookController::class, 'destroy'])->name('destroy');
 });
 
 Route::prefix('user')
         ->name('user.')
         ->group(function () {
     Route::get('/book', [ReturnedBookController::class, 'index'])->name('book');
+    Route::get('/profile', [UserController::class, 'index'])->name('profile');
 });
 
 Route::get('/user/penalties', [PenaltiesController::class, 'show'])->name('penalties.show');

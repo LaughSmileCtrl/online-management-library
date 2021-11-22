@@ -17,11 +17,11 @@ class CreateDonateBooksTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('isbn', 20);
-            $table->string('title', 20);
+            $table->string('title', 30);
             $table->string('author', 100);
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('book_categories');
-            $table->string('publisher', 20);
+            $table->string('publisher', 50);
             $table->year('year');
             $table->text('description');
             $table->integer('quantity');

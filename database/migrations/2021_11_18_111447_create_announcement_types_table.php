@@ -27,5 +27,7 @@ class CreateAnnouncementTypesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('announcement_types');
+        Schema::dropIfExists('announcements');
+
     }
 }

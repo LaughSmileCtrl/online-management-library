@@ -9,7 +9,9 @@
             <BookTable
                 @editBook="actionEdit"
                 @deleteBook="actionDelete"
+                :books="books"
             />
+            <Pagination :links="books.links" />
         </div>
         <div id="add-book" v-show="!onMain">
             <div class="py-5">
@@ -19,6 +21,7 @@
             </div>
             <BookEntry ref="bookEntry" @uploadedImage="previewFile" />
         </div>
+
     </AuthLayout>
 </template>
 
@@ -26,8 +29,10 @@
 import AuthLayout from "@/Layouts/Authenticated.vue";
 import BookTable from "@/Components/Tables/BookTable.vue";
 import BookEntry from "@/Components/Forms/BookEntry.vue";
+import Pagination from "@/Components/Pagination.vue";
 
 export default {
+    props: ['books'],
     data() {
         return {
             onMain: true,
@@ -37,6 +42,7 @@ export default {
         AuthLayout,
         BookTable,
         BookEntry,
+        Pagination,
     },
     methods: {
         addUser() {
@@ -49,11 +55,11 @@ export default {
         actionEdit() {
             this.onMain = !this.onMain;
         },
-        actionDelete() {
+        actionDelete(id) {
             this.$swal({
                 title: "Anda yakin?",
                 text:
-                    "Apakah anda benar akan mwnghapus buku ini?",
+                    "Apakah anda benar akan menghapus buku ini?",
                 icon: "qustion",
                 showCloseButton: true,
                 showCancelButton: true,
@@ -62,6 +68,9 @@ export default {
                 reverseButtons: true,
             }).then((result) => {
                 if (result.isConfirmed) {
+                    data._method = "DELETE";
+                    this.$inertia.post('/book/', id, data);
+                    
                     this.$swal("Tersimpan", "", "success");
                 }
             });

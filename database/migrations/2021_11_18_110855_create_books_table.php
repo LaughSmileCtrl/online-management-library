@@ -16,9 +16,9 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('isbn', 20)->unique();
-            $table->string('title', 20);
+            $table->string('title', 30);
             $table->string('author', 100);
-            $table->string('publisher', 20);
+            $table->string('publisher', 50);
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('book_categories');
             $table->year('year');
@@ -38,6 +38,7 @@ class CreateBooksTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('user_book');
         Schema::dropIfExists('books');
     }
 }

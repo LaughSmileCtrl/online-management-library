@@ -26,7 +26,7 @@
       "
     >
       <li>
-        <a><i class="fa fa-user mr-2"></i> Ubah Profile</a>
+        <Link :href="route('user.profile')"><i class="fa fa-user mr-2"></i> Ubah Profile</Link>
       </li>
       <li>
         <a><i class="fa fa-key mr-2"></i> Ubah Password</a>
@@ -37,3 +37,13 @@
     </ul>
   </div>
 </template>
+
+<script>
+import { Link } from '@inertiajs/inertia-vue3'
+
+export default {
+  components: {
+    Link,
+  }
+}
+</script>
