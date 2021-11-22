@@ -35,9 +35,9 @@ module.exports = {
         themes: [{
             'light': {
                 /* your theme name */
-                'primary': '#a991f7',
+                'primary': '#396EB0',
                 /* Primary color */
-                'primary-focus': '#8462f4',
+                'primary-focus': '#0F52BA',
                 /* Primary color - focused */
                 'primary-content': '#ffffff',
                 /* Foreground content color to use on primary color */
@@ -69,14 +69,14 @@ module.exports = {
                 /* Base color, a little darker */
                 'base-300': '#d1d5db',
                 /* Base color, even more darker */
-                'base-content': '#1f2937',
+                'base-content': '#125D98',
                 /* Foreground content color to use on base color */
 
-                'info': '#7367f0',
+                'info': '#132877',
                 /* Info */
                 'success': '#22C55E',
                 /* Success */
-                'warning': '#ffc107',
+                'warning': '#3b9517',
                 /* Warning */
                 'error': '#dc3545',
                 /* Error */

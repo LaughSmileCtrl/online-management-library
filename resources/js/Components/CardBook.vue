@@ -30,6 +30,7 @@
                     {{ book.returnDate  }}
                 </p>
             </div>
+            <p class="opacity-50">ISBN : {{ book.author  }}</p>
             <div class="btn-group absolute bottom-0 right-0 shadow-2xl">
                 <button class="btn btn-sm btn-neutral rounded-none rounded-tl" @click="openDesc">
                     Detail
