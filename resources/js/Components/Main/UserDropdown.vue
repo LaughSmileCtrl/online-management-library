@@ -23,6 +23,7 @@
         bg-base-100
         w-52
         text-blue-900
+        z-30
       "
     >
       <li>

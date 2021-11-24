@@ -9,6 +9,23 @@ class DonateBook extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'isbn',
+        'title',
+        'author',
+        'publisher',
+        'category_id',
+        'year',
+        'description',
+        'quantity',
+        'condition_id',
+    ];
+
+    protected $attributes = [
+        'image' => 'images/cover.jpg',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

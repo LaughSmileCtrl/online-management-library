@@ -14,11 +14,9 @@ class CreatePenaltiesTable extends Migration
     public function up()
     {
         Schema::create('penalties', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained();
             $table->unsignedBigInteger('borrow_id');
             $table->foreign('borrow_id')->references('id')->on('user_book');
-            $table->integer('penalty');;
+            $table->unsignedBigInteger('bill');;
             $table->unsignedBigInteger('paid_off');;
             $table->timestamps();
         });

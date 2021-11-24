@@ -41,13 +41,13 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::prefix('book')
-        ->name('book.')
-        ->group(function () {
-    Route::get('/catalog', [BookController::class, 'catalog'])->name('catalog');
-    Route::get('/', [BookController::class, 'index'])->name('index');
-    Route::delete('/{book}', [BookController::class, 'destroy'])->name('destroy');
-});
+Route::get('/book/catalog', [BookController::class, 'catalog'])->name('book.catalog');
+
+Route::resource('book', BookController::class)->except('show');
+
+Route::post('/donate-book/{donate_book}/approve', [DonateBookController::class, 'approve'])->name('donate-book.approve');
+Route::resource('donate-book', DonateBookController::class)->except('show');
+
 
 Route::prefix('user')
         ->name('user.')
@@ -60,9 +60,6 @@ Route::get('/user/penalties', [PenaltiesController::class, 'show'])->name('penal
 Route::get('/penalties', [PenaltiesController::class, 'index'])->name('penalties.index');
 
 Route::resource('user', MemberController::class);
-
-
-Route::resource('donate-book', DonateBookController::class);
 
 Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement.index');
 

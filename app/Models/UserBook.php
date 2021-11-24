@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class UserBook extends Model
 {
     use HasFactory;
+
+    protected $table = 'user_book';
+
+    const CREATED_AT = 'borrow_at';
+    const UPDATED_AT = 'return_at';
 }

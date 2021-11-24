@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\DonateBook;
 use Illuminate\Database\Seeder;
 
-class BookSeeder extends Seeder
+class DonateBookSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +14,8 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DonateBook::factory()
+            ->count(10)
+            ->create();
     }
 }

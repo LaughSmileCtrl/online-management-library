@@ -44,6 +44,7 @@ class User extends Authenticatable
 
     protected $attributes = [
         'is_admin' => false,
+        'is_agree' => false,
     ];
 
     public function donateBooks()
@@ -53,7 +54,7 @@ class User extends Authenticatable
 
     public function books()
     {
-        return $this->belongsToMany(Book::class);
+        return $this->belongsToMany(Book::class)->using(UserBook::class);
     }
 
     public function penalties()

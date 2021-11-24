@@ -1,7 +1,7 @@
 <template>
   <Head title="List Book" />
   <AuthLayout title="Katalog">
-    <div class="sticky md:flex top-0 bg-gray-100 z-10 py-5">
+    <div class="md:flex top-0 bg-gray-100 py-5">
 		<div class="md:flex-1 my-3 md:my-0">
 			<select class="select rounded-full select-primary w-full md:w-56 max-w-xs">
 				<option disabled="disabled" selected="selected">Ketegori</option> 

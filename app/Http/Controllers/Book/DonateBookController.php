@@ -3,19 +3,31 @@
 namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\Controller;
+use App\Models\DonateBook;
+use App\Http\Requests\Book\StoreBookRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class DonateBookController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('App/Book/ApproveBook');
+        $books = DonateBook::when($request->search, function($query, $search) {
+                return $query->where('isbn', 'LIKE', '%'.$search.'%')
+                        ->orWhere('author', 'LIKE', '%'.$search.'%')
+                        ->orWhere('title', 'LIKE', '%'.$search.'%');
+            })
+            ->with(['condition', 'category'])
+            ->paginate(15);
+        
+        return Inertia::render('App/Book/BookList', ['books' => $books]);
     }
 
     public function create()
     {
-        return Inertia::render('App/Book/DonateBookForm');
+        $formConfig = ['method' => 'post','url' => route('donate-book.store')];
+        
+        return Inertia::render('App/Book/BookEntry', ['formConfig' => $formConfig]);
     }
 
 
@@ -25,9 +37,16 @@ class DonateBookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
-        //
+        $bookValidate = $request->validated();
+        $bookValidate['user_id'] = 1;
+
+        DonateBook::create($bookValidate);
+        
+        return redirect()->route('donate-book.create')->with([
+            'message' => 'Buku '. $request->title .' berhasil ditambah'
+        ]);
     }
 
     /**
@@ -36,9 +55,9 @@ class DonateBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function approve(DonateBook $donateBook)
     {
-        //
+        dd($donateBook);
     }
 
     /**
@@ -47,9 +66,14 @@ class DonateBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(DonateBook $donateBook)
     {
-        //
+        $formConfig = ['method' => 'put','url' => route('donate-book.update', $donateBook)];
+        
+        return Inertia::render('App/Book/BookEntry', [
+            'book' => $donateBook, 
+            'formConfig' => $formConfig
+        ]);
     }
 
     /**
@@ -59,9 +83,18 @@ class DonateBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreBookRequest $request, DonateBook $donateBook)
     {
-        //
+        $bookValidate = $request->validated();
+
+        $donateBook->update($bookValidate);
+
+        if(isset($bookValidate['image'])) {
+            $donateBook->image = $bookValidate['image'];
+            $donateBook->save();
+        }
+
+        return redirect()->route('donate-book.index')->with(['message' => 'Buku '.$request->title.' berhasil diubah']);
     }
 
     /**
@@ -70,8 +103,10 @@ class DonateBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DonateBook $donateBook)
     {
-        //
+        $donateBook->delete();
+
+        return back()->with(['message' => 'Buku '. $donateBook->title .' terhapus']);
     }
 }

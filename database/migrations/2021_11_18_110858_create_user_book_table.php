@@ -17,10 +17,9 @@ class CreateUserBookTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('book_id')->constrained();
-            $table->timestamp('borrow_at');;
-            $table->timestamp('due_at');;
-            $table->timestamp('return_at');;
-            $table->timestamps();
+            $table->timestamp('due_at');
+            $table->timestamp('borrow_at');
+            $table->timestamp('return_at');
         });
     }
 

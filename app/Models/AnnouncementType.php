@@ -13,7 +13,7 @@ class AnnouncementType extends Model
 
     public function announcements()
     {
-        return $this->hasMany(Announcement::class);
+        return $this->hasMany(Announcement::class, 'type_id');
     }
 
 }

@@ -1,80 +1,68 @@
 <template>
     <AuthLayout>
-        <div id="book-table" v-show="onMain" class="mb-10">
-            <div class="py-5">
-                <button class="btn btn-primary my-5" @click="addUser">
+        <div class="md:flex top-0 bg-gray-100 py-5 mb-4">
+            <div class="md:flex-1 my-3 md:my-0" v-if="route().current('book.index')">
+                <Link :href="route('book.create')" class="btn btn-primary">
                     <i class="fa fa-plus"></i>&nbsp; Tambah Buku
-                </button>
+                </Link>
             </div>
-            <BookTable
-                @editBook="actionEdit"
-                @deleteBook="actionDelete"
-                :books="books"
-            />
-            <Pagination :links="books.links" />
-        </div>
-        <div id="add-book" v-show="!onMain">
-            <div class="py-5">
-                <button class="btn" @click="addUser">
-                    <i class="fas fa-arrow-left"></i>&nbsp; Kembali
-                </button>
+            <div class="md:flex-none form-control w-full md:w-56 max-w-xs  my-3 md:my-0">
+                <div class="relative">
+                    <input
+                    type="text"
+                    placeholder="Search (isbn, author, title)"
+                    class="w-full input input-primary rounded-full "
+                    v-model="searchQuery"
+                    @keyup="search"
+                    />
+                </div>
             </div>
-            <BookEntry ref="bookEntry" @uploadedImage="previewFile" />
         </div>
 
+        <div id="book-table" class="my-5">
+            <div class="alert alert-info mb-5" v-if="$page.props.flash.message">
+                <div class="flex-1">
+                    <label>{{ $page.props.flash.message }}</label>
+                </div>
+            </div>
+            <BookTable :books="books" />
+            <Pagination :links="books.links" />
+        </div>
     </AuthLayout>
 </template>
 
 <script>
 import AuthLayout from "@/Layouts/Authenticated.vue";
+import { Link } from "@inertiajs/inertia-vue3";
 import BookTable from "@/Components/Tables/BookTable.vue";
-import BookEntry from "@/Components/Forms/BookEntry.vue";
 import Pagination from "@/Components/Pagination.vue";
 
 export default {
-    props: ['books'],
+    props: ["books"],
     data() {
         return {
-            onMain: true,
+            searchQuery: '',
         };
     },
     components: {
         AuthLayout,
+        Link,
         BookTable,
-        BookEntry,
         Pagination,
     },
+    computed : {
+        prefix() {
+            return (route().current('book.*')) 
+                ? 'book'
+                : 'donate-book';
+        }
+    },
     methods: {
-        addUser() {
-            this.onMain = !this.onMain;
-        },
-        previewFile(event) {
-            var img = event.target.files[0];
-            this.$refs.bookEntry.showImg(img);
-        },
-        actionEdit() {
-            this.onMain = !this.onMain;
-        },
-        actionDelete(id) {
-            this.$swal({
-                title: "Anda yakin?",
-                text:
-                    "Apakah anda benar akan menghapus buku ini?",
-                icon: "qustion",
-                showCloseButton: true,
-                showCancelButton: true,
-                confirmButtonText: "Ya, hapus",
-                cancelButtonText: "Tidak",
-                reverseButtons: true,
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    data._method = "DELETE";
-                    this.$inertia.post('/book/', id, data);
-                    
-                    this.$swal("Tersimpan", "", "success");
-                }
+        search() {
+            this.$inertia.get(route(this.prefix+'.index'), {search: this.searchQuery}, {
+                preserveState: true,
             });
-        },
+        }
     },
 };
 </script>

@@ -9,9 +9,25 @@ class Book extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'isbn',
+        'title',
+        'author',
+        'publisher',
+        'category_id',
+        'year',
+        'description',
+        'quantity',
+        'condition_id',
+    ];
+
+    protected $attributes = [
+        'image' => 'images/cover.jpg',
+    ];
+
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->using(UserBook::class);
     }
 
     public function category()

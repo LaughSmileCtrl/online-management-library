@@ -18,7 +18,7 @@ export default {
     computed: {
         classes() {
             return this.active
-                ? 'text-white hover:bg-blue-800 text-xs uppercase py-5 px-2 font-bold block bg-blue-900 rounded'
+                ? 'text-white hover:bg-primary-focus text-xs uppercase py-5 px-2 font-bold block bg-primary rounded'
                 : 'text-blue-500 hover:bg-blue-50 hover:text-blue-900 text-xs uppercase py-5 px-2 font-bold block';
         },
         setIcon() {

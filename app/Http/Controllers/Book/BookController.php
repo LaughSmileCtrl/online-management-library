@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Http\Requests\Book\StoreBookRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -19,9 +20,16 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::with(['condition', 'category'])->paginate(15);
+        $books = Book::when($request->search, function($query, $search) {
+                    return $query->where('isbn', 'LIKE', '%'.$search.'%')
+                            ->orWhere('author', 'LIKE', '%'.$search.'%')
+                            ->orWhere('title', 'LIKE', '%'.$search.'%');
+                })
+                ->with(['condition', 'category'])
+                ->paginate(15);
+
         return Inertia::render('App/Book/BookList', ['books' => $books]);
     }
 
@@ -32,7 +40,10 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $formConfig = ['method' => 'post','url' => route('book.store')];
+        
+        return Inertia::render('App/Book/BookEntry', ['formConfig' => $formConfig]);
+        
     }
 
     /**
@@ -41,9 +52,15 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
-        //
+        $bookValidate = $request->validated();
+        
+        Book::create($bookValidate);
+        
+        return redirect()->route('book.index')->with([
+            'message' => 'Buku '. $request->title .' berhasil ditambah'
+        ]);
     }
 
     /**
@@ -52,9 +69,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Book $book)
     {
-        //
+        
     }
 
     /**
@@ -63,9 +80,14 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Book $book)
     {
-        //
+        $formConfig = ['method' => 'put','url' => route('book.update', $book->id)];
+        
+        return Inertia::render('App/Book/BookEntry', [
+            'book' => $book, 
+            'formConfig' => $formConfig
+        ]);
     }
 
     /**
@@ -75,9 +97,18 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreBookRequest $request, Book $book)
     {
-        //
+        $bookValidate = $request->validated();
+
+        $book->update($bookValidate);
+
+        if(isset($bookValidate['image'])) {
+            $book->image = $bookValidate['image'];
+            $book->save();
+        }
+
+        return redirect()->route('book.index')->with(['message' => 'Buku '.$request->title.' berhasil diubah']);
     }
 
     /**
@@ -88,7 +119,8 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        dd($book);
-        return redirect()->back();
+        $book->delete();
+        
+        return back()->with(['message' => 'Buku '. $book->title .' terhapus']);
     }
 }
