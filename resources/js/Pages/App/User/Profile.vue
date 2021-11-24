@@ -1,21 +1,37 @@
 <template>
-  <AuthLayout>
+  <AuthLayout title="Profile">
     <!-- Add Here -->
     <div class="tabs shadow-md">
       <a class="tab tab-lifted tab-active">Profile</a>
       <a class="tab tab-lifted">Password</a>
       <a class="tab tab-lifted">Info</a>
     </div>
-    <div class="grid grid-cols-6 gap-4 bg-gray-50 h-full">
+    <div class="grid grid-cols-6 gap-4 bg-gray-50 h-full shadow-md">
       <div class="col-start-1 col-span-1 ...">
         <h2 class="font-semibold text-2xl leading-tight mt-5 ml-5">
           Profil Anda
         </h2>
       </div>
-      <div class="col-start-1 col-end-3 mt-5 ml-5 ...">
-        KOKOH AKU GATAU MASUKIN FOTO DISINI GIMANA, BENTAR DULU AKU MAU NYARI
+      <div class="col-start-1 col-end-3 mt-5 ml-7 ...">
+        <div class="avatar">
+          <div
+            class="
+              mb-8
+              rounded-box
+              w-24
+              h-24
+              ring ring-primary ring-offset-base-100 ring-offset-2
+            "
+          >
+            <img
+              src="http://daisyui.com/tailwind-css-component-profile-1@94w.png"
+            />
+          </div>
+        </div>
       </div>
-      <div class="col-end-7 col-span-2...">3</div>
+      <div class="col-start-1 col-end-3 ml-7 ...">
+        <button class="btn btn-xs rounded-full -m-2.5">Unggah</button>
+      </div>
       <div class="col-start-1 col-end-4 mt-5 ml-5 ...">
         <div class="form-control">
           <label class="label">
@@ -62,13 +78,17 @@
             type="text"
             placeholder="User"
             disabled="disabled"
-            class="input input-bordered input-md"
+            class="input input-primary input-bordered rounded-full input-md"
           />
         </div>
       </div>
+      <div class="col-start-1 mt-5 ...">
+        <button class="btn btn-primary rounded-full ml-5 mb-7">SIMPAN</button>
+      </div>
+      <div class="col-start-2 mt-5 ...">
+        <button class="btn btn-outline rounded-full mb-7">URUNGKAN</button>
+      </div>
     </div>
-    <button class="btn rounded-full mt-10 ml-5">Simpan</button>
-    <button class="btn btn-outline rounded-full ml-5 mb-10">Urungkan</button>
   </AuthLayout>
 </template>
 
