@@ -42,7 +42,7 @@ module.exports = {
                 'primary-content': '#ffffff',
                 /* Foreground content color to use on primary color */
 
-                'secondary': '#f6d860',
+                'secondary': '#FFC947',
                 /* Secondary color */
                 'secondary-focus': '#f3cc30',
                 /* Secondary color - focused */
