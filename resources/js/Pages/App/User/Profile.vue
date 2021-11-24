@@ -1,4 +1,5 @@
 <template>
+  <Head title="Profile" />
   <AuthLayout title="Profile">
     <!-- Add Here -->
     <div class="tabs shadow-md">

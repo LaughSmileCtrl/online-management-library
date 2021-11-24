@@ -1,8 +1,9 @@
 <template>
-    <AuthLayout>
-        <BarChart />
-        <LineChart />
-    </AuthLayout>
+  <Head title="Statistik" />
+  <AuthLayout title="Statistik">
+    <BarChart />
+    <LineChart />
+  </AuthLayout>
 </template>
 
 <script>
@@ -11,10 +12,10 @@ import BarChart from "@/Components/BarChart.vue";
 import LineChart from "@/Components/LineChart.vue";
 
 export default {
-    components: {
-        AuthLayout,
-        BarChart,
-        LineChart,
-    },
+  components: {
+    AuthLayout,
+    BarChart,
+    LineChart,
+  },
 };
 </script>
