@@ -1,12 +1,12 @@
 <template>
     <AuthLayout>
-        <div class="md:flex top-0 bg-gray-100 py-5 mb-4">
-            <div class="md:flex-1 my-3 md:my-0" v-if="route().current('book.index')">
-                <Link :href="route('book.create')" class="btn btn-primary">
+        <div class="grid grid-cols-2 justify-items-stretch  bg-gray-100 py-5 mb-4">
+            <div class="justify-self-start my-3 md:my-0">
+                <Link :href="route('book.create')" class="btn btn-primary" v-if="route().current('book.index')">
                     <i class="fa fa-plus"></i>&nbsp; Tambah Buku
                 </Link>
             </div>
-            <div class="md:flex-none form-control w-full md:w-56 max-w-xs  my-3 md:my-0">
+            <div class="justify-self-end form-control w-full md:w-56 max-w-xs  my-3 md:my-0">
                 <div class="relative">
                     <input
                     type="text"
@@ -18,14 +18,8 @@
                 </div>
             </div>
         </div>
-
         <div id="book-table" class="my-5">
-            <div class="alert alert-info mb-5" v-if="$page.props.flash.message">
-                <div class="flex-1">
-                    <label>{{ $page.props.flash.message }}</label>
-                </div>
-            </div>
-            <BookTable :books="books" />
+            <BookTable :books="books.data" />
             <Pagination :links="books.links" />
         </div>
     </AuthLayout>

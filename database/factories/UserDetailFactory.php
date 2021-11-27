@@ -2,9 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BookCategoryFactory extends Factory
+class UserDetailFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,7 +15,10 @@ class BookCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->jobTitle(),
+            'user_id' => User::factory(),
+            'nrp' => $this->faker->randomNumber(8, true),
+            'address'=> $this->faker->address(),
+            'department_id' => rand(1, 2),
         ];
     }
 }

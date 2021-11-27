@@ -29,9 +29,6 @@
       <li>
         <Link :href="route('user.profile')"><i class="fa fa-user mr-2"></i> Ubah Profile</Link>
       </li>
-      <li>
-        <a><i class="fa fa-key mr-2"></i> Ubah Password</a>
-      </li>
       <li class="border-t-2">
         <a><i class="fa fa-sign-out-alt mr-2"></i> Log Out</a>
       </li>

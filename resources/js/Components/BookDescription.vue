@@ -7,36 +7,30 @@
             </div>
             <div class="w-2/3 px-8 text-left">
                 <h3 class="font-bold text-2xl mb-2">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    {{ book.title }}
                 </h3>
                 <h5 class="font-bold inline-block">Penulis</h5>
-                <h4>Lorem Ipsum Dolor</h4>
+                <h4>{{ book.author }}</h4>
                 <h5 class="font-bold inline-block mt-3">Penerbit</h5>
-                <h4>Adipisicing</h4>
+                <h4>{{ book.publisher }}</h4>
                 <h5 class="font-bold inline-block mt-3">Tahun Terbit</h5>
-                <h4>2021</h4>
-                <h5 class="font-bold inline-block mt-3">Stock</h5>
-                <h4>5</h4>
+                <h4>{{ book.year }}</h4>
+                <h5 class="font-bold inline-block mt-3">Jumlah yang dapat dipinjam</h5>
+                <h4>{{ book.quantity - book.borrowed_qty }}</h4>
                 <h5 class="font-bold inline-block mt-3">Kategori</h5>
-                <h4>Baru</h4>
+                <h4>{{ book.category.name }}</h4>
                 <h5 class="font-bold inline-block mt-3">Deskripsi</h5>
                 <p class="text-md">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Inventore odit quis minus magni alias doloremque eveniet veniam
-                    eum minima sint? Ipsam sunt id, culpa atque tempore explicabo
-                    velit doloremque mollitia? Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Voluptate obcaecati illo cumque
-                    nihil deleniti, repellat quis. Dolore cupiditate rerum porro
-                    corporis eum enim ab aut nisi natus. Labore, veniam facilis?
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Inventore odit quis minus magni alias doloremque eveniet veniam
-                    eum minima sint? Ipsam sunt id, culpa atque tempore explicabo
-                    velit doloremque mollitia? Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Voluptate obcaecati illo cumque
-                    nihil deleniti, repellat quis. Dolore cupiditate rerum porro
-                    corporis eum enim ab aut nisi natus. Labore, veniam facilis?
+                    {{ book.description }}
                 </p>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+
+export default {
+    props: ['book']
+}
+</script>

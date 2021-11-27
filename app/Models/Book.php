@@ -27,7 +27,8 @@ class Book extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->using(UserBook::class);
+        return $this->belongsToMany(User::class, 'user_book')
+                ->withPivot(['due_at', 'borrow_at', 'return_at', 'bill', 'paid_off']);
     }
 
     public function category()

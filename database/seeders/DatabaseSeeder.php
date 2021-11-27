@@ -17,9 +17,12 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             AnnouncementSeeder::class,
-            PenaltySeeder::class,
+            BookCategorySeeder::class,
+            BookConditionSeeder::class,
+            DepartmentSeeder::class,
+            UserDetailSeeder::class,
+            UserBookSeeder::class,
             DonateBookSeeder::class,
-            BookSeeder::class
         ]);
     }
 }

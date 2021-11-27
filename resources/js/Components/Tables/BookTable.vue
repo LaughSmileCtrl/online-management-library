@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(book, index) of books.data" :key="(book, index)" class="hover" @click="$emit('rowClicked')">
+                <tr v-for="(book, index) of books" :key="(book, index)" class="hover">
                     <th>{{ index + 1 }}</th>
                     <td>{{ book.isbn }}</td>
                     <td>{{ book.title }}</td>
@@ -73,13 +73,25 @@ export default {
             this.$inertia.get(route( this.prefix+'.edit', id))
         },
         toApprovement(id) {
-            this.$swal('success');
-
-            this.$inertia.post(route('donate-book.approve', id), null, {
-                onSuccess: page => {
-                    this.$swal(page.props.flash.message, '', 'success');
-                    this.$inertia.reload({ only: ['books'] });
-                },
+            this.$swal({
+                title: 'Anda yakin?',
+                text:
+                    'Apakah anda benar akan menambah buku ini?',
+                icon: 'qustion',
+                showCloseButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Ya, tambah',
+                cancelButtonText: 'Tidak',
+                reverseButtons: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.$inertia.post(route('donate-book.approve', id), null, {
+                        onSuccess: page => {
+                            this.$swal(page.props.flash.message, '', 'success');
+                            this.$inertia.reload({ only: ['books'] });
+                        },
+                    });
+                }
             });
         },
         deleteAction(id) {

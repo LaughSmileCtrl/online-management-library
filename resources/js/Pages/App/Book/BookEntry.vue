@@ -1,16 +1,7 @@
 <template>
     <AuthLayout>
         <div class="py-5">
-            <div v-if="route().current('donate-book.create')">
-                <div class="alert alert-info mb-5" 
-                    v-if="$page.props.flash.message"
-                >
-                    <div class="flex-1">
-                        <label>{{ $page.props.flash.message }}</label>
-                    </div>
-                </div>
-            </div>
-            <Link :href="route(prefix+'.index')" class="btn" v-else>
+            <Link :href="route(prefix+'.index')" class="btn" v-if="!route().current('donate-book.create')">
                 <i class="fas fa-arrow-left"></i>&nbsp; Kembali
             </Link>
         </div>
@@ -285,6 +276,7 @@ export default {
             this.form.submit(this.formConfig.method, this.formConfig.url, {
                 onSuccess: page => {
                     this.form.reset();
+                    this.$swal(page.props.flash.message, '', 'success');
                 }
             });
 

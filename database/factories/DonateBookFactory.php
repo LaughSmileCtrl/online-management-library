@@ -22,10 +22,10 @@ class DonateBookFactory extends Factory
             'title' => $this->faker->realText(20),
             'author' => $this->faker->name(),
             'publisher' => $this->faker->company(),
-            'category_id' => BookCategory::factory(),
+            'category_id' => rand(1, 21),
             'year' => rand(2010, 2021),
             'description' => $this->faker->realText(),
-            'condition_id' => BookCondition::factory(),          
+            'condition_id' => rand(1, 4),         
             'image' => 'images/cover.jpg',
             'quantity' => $this->faker->numberBetween(2,10),
         ];

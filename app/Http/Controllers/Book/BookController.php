@@ -10,9 +10,11 @@ use Inertia\Inertia;
 
 class BookController extends Controller
 {
-    public function catalog()
+    public function catalog(Request $request)
     {
-        return Inertia::render('App/Book/Catalog');
+        $books = $this->getBooks($request->search);
+
+        return Inertia::render('App/Book/Catalog', ['books' => $books]);
     }
 
     /**
@@ -22,16 +24,20 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        $books = Book::when($request->search, function($query, $search) {
+        $books = $this->getBooks($request->search);
+        return Inertia::render('App/Book/BookList', ['books' => $books]);
+    }
+
+    public function getBooks($search)
+    {
+        return Book::when($search, function($query, $search) {
                     return $query->where('isbn', 'LIKE', '%'.$search.'%')
                             ->orWhere('author', 'LIKE', '%'.$search.'%')
                             ->orWhere('title', 'LIKE', '%'.$search.'%');
                 })
                 ->with(['condition', 'category'])
                 ->paginate(15);
-
-        return Inertia::render('App/Book/BookList', ['books' => $books]);
-    }
+        }
 
     /**
      * Show the form for creating a new resource.

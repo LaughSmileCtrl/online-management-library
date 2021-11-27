@@ -24,6 +24,7 @@ class CreateBooksTable extends Migration
             $table->year('year');
             $table->text('description');
             $table->integer('quantity');
+            $table->integer('borrowed_qty')->default(0);
             $table->unsignedBigInteger('condition_id');
             $table->foreign('condition_id')->references('id')->on('book_conditions');
             $table->string('image', 100);

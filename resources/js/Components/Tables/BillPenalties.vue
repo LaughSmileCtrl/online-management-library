@@ -6,56 +6,49 @@
                     <th></th>
                     <th>Judul Buku</th>
                     <th>Tanggal Pinjam</th>
-                    <th>Tanggal Kembali</th>
+                    <th>Tanggal Batas Kembali</th>
                     <th>Tanggal Dikembalikan</th>
-                    <th>Jumlah Hari Telat</th>
                     <th>Tagihan</th>
+                    <th>Terbayar</th>
+                    <th>Sisa Tagihan</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Lorem</td>
-                    <td>12/10/2021</td>
-                    <td>19/10/2021</td>
-                    <td>26/10/2021</td>
-                    <td>7</td>
-                    <td>7.000</td>
+                <tr v-for="(penalty, index) of penalties" :key="index">
+                    <td>{{ index+1 }}</td>
+                    <td>{{ penalty.book.title }}</td>
+                    <td>{{ (new Date(penalty.borrow_at)).toLocaleDateString('id-ID') }}</td>
+                    <td>{{ (new Date(penalty.due_at)).toLocaleDateString('id-ID') }}</td>
+                    <td>{{ (new Date(penalty.return_at)).toLocaleDateString('id-ID') }}</td>
+                    <td>{{ penalty.bill }}</td>
+                    <td>{{ penalty.paid_off }}</td>
+                    <td>{{ penalty.bill - penalty.paid_off }}</td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Lorem</td>
-                    <td>12/10/2021</td>
-                    <td>19/10/2021</td>
-                    <td>26/10/2021</td>
-                    <td>7</td>
-                    <td>7.000</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Lorem</td>
-                    <td>12/10/2021</td>
-                    <td>19/10/2021</td>
-                    <td>26/10/2021</td>
-                    <td>7</td>
-                    <td>7.000</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Lorem</td>
-                    <td>12/10/2021</td>
-                    <td>19/10/2021</td>
-                    <td>26/10/2021</td>
-                    <td>7</td>
-                    <td>7.000</td>
-                </tr>
+                
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="6" class="text-center font-bold">Jumlah Tagihan</td>
-                    <td>28.000</td>
+                    <td colspan="7" class="text-center font-bold">Jumlah Tagihan</td>
+                    <td>{{ totalBill }}</td>
                 </tr>
             </tfoot>
         </table>
     </div>
 </template>
+
+<script>
+
+export default {
+    props: ['penalties'],
+    computed: {
+        totalBill() {
+            var total = 0;
+            this.penalties.forEach(penalty => {
+                total += penalty.bill - penalty.paid_off
+            });
+
+            return total;
+        }
+    }
+}
+</script>

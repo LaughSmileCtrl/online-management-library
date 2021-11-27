@@ -17,7 +17,7 @@ class AnnouncementFactory extends Factory
     {
         return [
             'created_by' => User::factory(),
-            'type_id' => AnnouncementType::factory(),
+            'type_id' => rand(1,2),
             'title' => $this->faker->word(),
             'message' => $this->faker->text(200),
         ];

@@ -8,15 +8,15 @@
               Overview
             </h6>
             <h2 class="text-xl font-semibold">
-              Registrasi member perbulan
+              Perbandingan jumlah buku perkategori
             </h2>
           </div>
         </div>
       </div>
-      <div class="p-4 flex-auto">
+      <div class="p-4 flex-auto flex justify-center">
         <!-- Chart -->
-        <div class="relative" style="height:350px">
-          <canvas id="line-chart"></canvas>
+        <div class="relative" >
+          <canvas id="pie-chart"></canvas>
         </div>
       </div>
     </div>
@@ -26,18 +26,29 @@
 import Chart from "chart.js/auto";
 
 export default {
-  props: ['lineProperties'],
+  props: ['pieProperties'],
   mounted: function() {
     this.$nextTick(function() {
       var config = {
-        type: "line",
+        type: "pie",
         data: {
-          labels: this.lineProperties.lables,
+          labels: this.pieProperties.lables,
           datasets: [
             {
               label: new Date().getFullYear(),
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)',
+                'rgb(98, 173, 191)',
+                'rgb(187, 204, 102)',
+              ],
               borderColor: "#4c51bf",
-              data: this.lineProperties.data,
+              data: this.pieProperties.data,
             },
           ]
         },
@@ -51,7 +62,7 @@ export default {
           }
         }
       };
-      var ctx = document.getElementById("line-chart").getContext("2d");
+      var ctx = document.getElementById("pie-chart").getContext("2d");
       ctx.canvas.parentNode.style.height = '500px';
       ctx.canvas.parentNode.style.weight = '500px';
       window.myLine = new Chart(ctx, config);

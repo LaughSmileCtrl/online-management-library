@@ -43,9 +43,15 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
+        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         'is_admin' => false,
         'is_agree' => false,
     ];
+
+    public function detail()
+    {
+        return $this->hasOne(UserDetail::class);
+    }
 
     public function donateBooks()
     {
@@ -54,11 +60,8 @@ class User extends Authenticatable
 
     public function books()
     {
-        return $this->belongsToMany(Book::class)->using(UserBook::class);
+        return $this->belongsToMany(Book::class, 'user_book')
+                ->withPivot(['due_at', 'borrow_at', 'return_at']);
     }
 
-    public function penalties()
-    {
-        return $this->hasMany(Penalty::class);
-    }
 }

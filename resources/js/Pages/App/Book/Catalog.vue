@@ -13,38 +13,50 @@
 		<div class="md:flex-none form-control w-full md:w-56 max-w-xs  my-3 md:my-0">
 			<div class="relative">
 				<input
-				type="text"
-				placeholder="Search"
-				class="w-full pr-16 input input-primary rounded-full "
+					type="text"
+					placeholder="Search (isbn, author, title)"
+					class="w-full input input-primary rounded-full "
+					v-model="searchQuery"
+					@keyup="search"
 				/>
-				<button class="absolute top-0 right-0 rounded-r-full btn btn-primary">
-				<div class="fa fa-search"></div>
-				</button>
 			</div>
 		</div>
     </div>
     <div class="flex flex-wrap justify-center mb-9">
-      <CardBook type="0" :isAgree="false" />
-      <CardBook type="1"/>
-      <CardBook type="0"/>
+    	<CardBook v-for="(book, index) of books.data" :key="index" type="0" :isAgree="false" :book="book" />
     </div>
+    <div class="flex flex-wrap justify-center mb-9">
+		<Pagination :links="books.links" />
+	</div>
   </AuthLayout>
-  <Agreement v-show="false" ref="modal" />
+
 </template>
 
 <script>
 import { Head } from "@inertiajs/inertia-vue3";
 import AuthLayout from "@/Layouts/Authenticated.vue";
 import CardBook from "@/Components/CardBook.vue";
+import Pagination from "@/Components/Pagination.vue";
 
 export default {
+	data() {
+		return {
+            searchQuery: '',
+		}
+	},
+	props: ['books'],
     components: {
         Head,
         AuthLayout,
         CardBook,
+		Pagination,
     },
     methods: {
-        
+        search() {
+            this.$inertia.get(route('book.catalog'), {search: this.searchQuery}, {
+                preserveState: true,
+            });
+        }
     },
 };
 </script>

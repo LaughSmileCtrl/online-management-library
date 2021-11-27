@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Book;
+use App\Models\UserDetail;
 use Illuminate\Database\Seeder;
 
-class BookSeeder extends Seeder
+class UserDetailSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +14,8 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        Book::factory()
-            ->count(20)
+        UserDetail::factory()
+            ->count(10)
             ->create();
     }
 }

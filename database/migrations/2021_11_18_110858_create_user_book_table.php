@@ -15,11 +15,13 @@ class CreateUserBookTable extends Migration
     {
         Schema::create('user_book', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('book_id')->constrained();
-            $table->timestamp('due_at');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('book_id')->constrained()->onDelete('cascade');
             $table->timestamp('borrow_at');
-            $table->timestamp('return_at');
+            $table->timestamp('due_at');
+            $table->date('return_at')->nullable();
+            $table->unsignedBigInteger('bill')->default(0);
+            $table->unsignedBigInteger('paid_off')->default(0);
         });
     }
 

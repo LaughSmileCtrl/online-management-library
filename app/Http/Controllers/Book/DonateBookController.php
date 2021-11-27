@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Book;
 use App\Http\Controllers\Controller;
 use App\Models\DonateBook;
 use App\Http\Requests\Book\StoreBookRequest;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -57,7 +58,18 @@ class DonateBookController extends Controller
      */
     public function approve(DonateBook $donateBook)
     {
-        dd($donateBook);
+        $newBook = $donateBook->toArray();
+
+        unset($newBook['id']);
+        unset($newBook['user_id']);
+        unset($newBook['created_at']);
+        unset($newBook['updated_at']);
+        
+        Book::create($newBook);
+        
+        $donateBook->delete();
+
+        return back()->with(['message' => $newBook['title'].' berhasil ditambah']);
     }
 
     /**
