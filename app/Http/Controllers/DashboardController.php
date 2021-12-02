@@ -12,7 +12,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $user_id = 32;
+        $user_id = 3;
         $booksBorrow = UserBook::where('user_id', $user_id)
                 ->where('return_at', null)
                 ->with('book.category', 'book.condition')

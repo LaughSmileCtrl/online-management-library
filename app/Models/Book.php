@@ -22,7 +22,7 @@ class Book extends Model
     ];
 
     protected $attributes = [
-        'image' => 'images/cover.jpg',
+        'image' => '/images/books/cover.jpg',
     ];
 
     public function users()

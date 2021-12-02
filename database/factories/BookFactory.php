@@ -26,7 +26,7 @@ class BookFactory extends Factory
             'description' => $this->faker->realText(),
             'quantity' => rand(1,10),
             'condition_id' => rand(1, 4),
-            'image' => 'images/cover.jpg',
+            'image' => '/images/books/cover.jpg',
         ];
     }
 }

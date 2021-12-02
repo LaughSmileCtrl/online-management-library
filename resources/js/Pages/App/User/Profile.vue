@@ -8,10 +8,10 @@
                     <form @submit.prevent="submit" class="grid gap-4">           
                         <div class="w-full grid grid-cols-1 xl:grid-cols-3 gap-5">
                             <div class="col-span-1">
-                                <div class="grid justify-items-center">
+                                <div class="grid justify-items-center w-3/2 ">
                                     <div class="avatar">
-                                        <div class="mb-8 rounded-box w-full h-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                            <img src="http://daisyui.com/tailwind-css-component-profile-1@94w.png">
+                                        <div class="mb-8 rounded-box w-full h-auto ring ring-primary ring-offset-base-100 ring-offset-2">
+                                            <img src="/images/avatar/avatar.jpg">
                                         </div>
                                     </div> 
                                 </div>

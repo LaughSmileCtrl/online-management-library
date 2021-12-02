@@ -26,7 +26,7 @@ class DonateBookFactory extends Factory
             'year' => rand(2010, 2021),
             'description' => $this->faker->realText(),
             'condition_id' => rand(1, 4),         
-            'image' => 'images/cover.jpg',
+            'image' => '/images/books/cover.jpg',
             'quantity' => $this->faker->numberBetween(2,10),
         ];
     }

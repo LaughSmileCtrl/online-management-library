@@ -17,7 +17,7 @@
                             <div class="avatar">
                                 <div class="w-12 h-12 mask mask-squircle">
                                     <img
-                                        src="/images/tailwind-css-component-profile-2@56w.png"
+                                        :src="user.image"
                                         alt="Avatar Tailwind CSS Component"
                                     />
                                 </div>

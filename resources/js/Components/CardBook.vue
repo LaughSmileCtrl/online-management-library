@@ -16,7 +16,7 @@
         "
     >
         <figure class="hidden md:block">
-            <img src="@/Img/cover.jpg" class="rounded-lg h-60" />
+            <img :src="book.image" class="rounded-lg h-60" style="width: 150px" />
         </figure>
         <div class="max-w-md card-body">
             <h2 class="card-title">

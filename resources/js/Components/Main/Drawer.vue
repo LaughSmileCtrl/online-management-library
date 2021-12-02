@@ -185,6 +185,9 @@
           <li class="items-center">
             <NavLink :href="route('book.index')" :active="route().current('book.index')" icon="fas fa-stream">Tabel Buku</NavLink>
           </li>
+          <li class="items-center">
+            <NavLink :href="route('book-borrow.get-all')" :active="route().current('book-borrow.get-all')" icon="fas fa-th-list">List Buku Dipinjam</NavLink>
+          </li>
           <li class="item-center">
             <NavLink :href="route('penalties.index')" :active="route().current('penalties.index')" icon="fas fa-money-bill-wave">List Denda</NavLink>
           </li>

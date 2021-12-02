@@ -3,13 +3,13 @@
     <div
       tabindex="0"
       class="
-        w-12
-        h-12
+        w-10
+        h-10
         ring ring-blue-600 ring-offset-base-100 ring-offset-2
         rounded-full
       "
     >
-      <img src="@/Img/avatar.png" class="mask mask-circle" />
+      <img src="/images/avatars/avatar.jpg" class="mask mask-circle" />
     </div>
     <ul
       tabindex="0"

@@ -12,7 +12,7 @@ class BookBorrowController extends Controller
     
     public function index()
     {
-        $user_id = 32;
+        $user_id = 3;
         $booksBorrow = UserBook::where('user_id', $user_id)
                 ->where('return_at', null)
                 ->with('book.category', 'book.condition')
@@ -22,8 +22,17 @@ class BookBorrowController extends Controller
         return Inertia::render('App/Book/BookBorrowed', ['booksBorrow' => $booksBorrow]);
     }
 
+    public function getAll()
+    {
+        $userBooks = UserBook::where('return_at', null)
+                ->with('user', 'book')
+                ->paginate(15);
+
+        return Inertia::render('App/Book/BorrowList', ['userBooks' => $userBooks]);
+    }
+
     public function store(Request $request) {
-        $user_id = 32;
+        $user_id = 3;
         $bookBorrow = new UserBook;
 
         $bookBorrow->user_id = $user_id;
@@ -45,7 +54,7 @@ class BookBorrowController extends Controller
 
     public function destroy($id)
     {
-        $user_id = 32;
+        $user_id = 3;
         $bookBorrow = UserBook::where('user_id', $user_id)
                 ->where('book_id', $id)
                 ->where('return_at', null)

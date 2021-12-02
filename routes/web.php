@@ -54,6 +54,9 @@ Route::resource('user', MemberController::class)
 Route::resource('penalties', PenaltiesController::class)
     ->only(['index', 'show', 'update']);
 
+Route::get('/book-borrow/get-all', [BookBorrowController::class, 'getAll'])
+    ->name('book-borrow.get-all');
+
 Route::resource('book-borrow', BookBorrowController::class)
     ->only(['index', 'store', 'destroy']);
 
@@ -65,8 +68,6 @@ Route::prefix('user')
 ->group(function () {
     Route::get('/profile', [UserController::class, 'index'])->name('profile');
 });    
-
-
 
 Route::get('/statistics', [StatisticsController::class, 'index'])->name('statistics.index');
 
