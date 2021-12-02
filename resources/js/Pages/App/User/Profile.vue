@@ -155,72 +155,7 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-      </div>
-      <div class="col-start-1 col-end-3 ml-7 ...">
-        <button class="btn btn-xs rounded-full -m-2.5">Unggah</button>
-      </div>
-      <div class="col-start-1 col-end-4 mt-5 ml-5 ...">
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Username</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Username"
-            class="input input-primary input-bordered input-md"
-          />
-        </div>
-      </div>
-      <div class="col-start-4 col-end-7 mt-5 mr-5 ...">
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Nama</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Nama"
-            class="input input-primary input-bordered input-md"
-          />
-        </div>
-      </div>
-      <div class="col-start-1 col-end-4 mt-3 ml-5 ...">
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Email</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Email"
-            class="input input-primary input-bordered input-md"
-          />
-        </div>
-      </div>
-
-      <div class="col-start-4 col-end-7 mt-3 mr-5 ...">
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Status</span>
-          </label>
-          <input
-            type="text"
-            placeholder="User"
-            disabled="disabled"
-            class="input input-primary input-bordered input-md"
-          />
-        </div>
-      </div>
-      <div class="col-start-1 mt-5 ...">
-        <button class="btn btn-primary ml-5 mb-7">SIMPAN</button>
-      </div>
-      <div class="col-start-2 mt-5 ...">
-        <button class="btn btn-outline mb-7">URUNGKAN</button>
-      </div>
-    </div>
-  </AuthLayout>
-=======
     </AuthLayout>
->>>>>>> bcff5706bdb60805941846eb88a603f1b8d222f4
 </template>
 
 <script>
