@@ -41,7 +41,7 @@
           <input
             type="text"
             placeholder="Username"
-            class="input input-primary input-bordered rounded-full input-md"
+            class="input input-primary input-bordered input-md"
           />
         </div>
       </div>
@@ -53,7 +53,7 @@
           <input
             type="text"
             placeholder="Nama"
-            class="input input-primary input-bordered rounded-full input-md"
+            class="input input-primary input-bordered input-md"
           />
         </div>
       </div>
@@ -65,7 +65,7 @@
           <input
             type="text"
             placeholder="Email"
-            class="input input-primary input-bordered rounded-full input-md"
+            class="input input-primary input-bordered input-md"
           />
         </div>
       </div>
@@ -79,15 +79,15 @@
             type="text"
             placeholder="User"
             disabled="disabled"
-            class="input input-primary input-bordered rounded-full input-md"
+            class="input input-primary input-bordered input-md"
           />
         </div>
       </div>
       <div class="col-start-1 mt-5 ...">
-        <button class="btn btn-primary rounded-full ml-5 mb-7">SIMPAN</button>
+        <button class="btn btn-primary ml-5 mb-7">SIMPAN</button>
       </div>
       <div class="col-start-2 mt-5 ...">
-        <button class="btn btn-outline rounded-full mb-7">URUNGKAN</button>
+        <button class="btn btn-outline mb-7">URUNGKAN</button>
       </div>
     </div>
   </AuthLayout>

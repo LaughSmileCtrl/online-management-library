@@ -14,7 +14,7 @@
       p-4
       hidden
       md:flex
-      bg-blue-400
+      bg-primary
     "
   >
     <div

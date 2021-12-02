@@ -68,9 +68,11 @@ module.exports = {
                 'base-200': '#f9fafb',
                 /* Base color, a little darker */
                 'base-300': '#d1d5db',
+                'base-450': '#A2D5F2',
                 /* Base color, even more darker */
                 'base-content': '#125D98',
                 /* Foreground content color to use on base color */
+                'base-450': '#07689F',
 
                 'info': '#132877',
                 /* Info */
