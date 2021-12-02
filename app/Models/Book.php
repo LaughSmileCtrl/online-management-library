@@ -22,12 +22,13 @@ class Book extends Model
     ];
 
     protected $attributes = [
-        'image' => 'images/cover.jpg',
+        'image' => '/images/books/cover.jpg',
     ];
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->using(UserBook::class);
+        return $this->belongsToMany(User::class, 'user_book')
+                ->withPivot(['due_at', 'borrow_at', 'return_at', 'bill', 'paid_off']);
     }
 
     public function category()

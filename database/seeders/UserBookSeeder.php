@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Penalty;
+use App\Models\UserBook;
 use Illuminate\Database\Seeder;
 
-class PenaltySeeder extends Seeder
+class UserBookSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,8 @@ class PenaltySeeder extends Seeder
      */
     public function run()
     {
-        Penalty::factory(10)->create();
+        UserBook::factory()
+            ->count(10)
+            ->create();
     }
 }

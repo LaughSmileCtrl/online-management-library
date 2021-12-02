@@ -50,51 +50,6 @@
                                 >Onary</a
                             >
                         </li>
-                        <li>
-                            <a
-                                href=""
-                                class="
-                                    text-white
-                                    hover:text-gray-400
-                                    text-sm
-                                    font-semibold
-                                    block
-                                    py-1
-                                    px-3
-                                "
-                                >About Us</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href=""
-                                class="
-                                    text-white
-                                    hover:text-gray-400
-                                    text-sm
-                                    font-semibold
-                                    block
-                                    py-1
-                                    px-3
-                                "
-                                >Blog</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href=""
-                                class="
-                                    text-white
-                                    hover:text-gray-400
-                                    text-sm
-                                    font-semibold
-                                    block
-                                    py-1
-                                    px-3
-                                "
-                                >MIT License</a
-                            >
-                        </li>
                     </ul>
                 </div>
             </div>

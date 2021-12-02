@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePenaltiesTable extends Migration
+class CreateDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreatePenaltiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('penalties', function (Blueprint $table) {
-            $table->unsignedBigInteger('borrow_id');
-            $table->foreign('borrow_id')->references('id')->on('user_book');
-            $table->unsignedBigInteger('bill');;
-            $table->unsignedBigInteger('paid_off');;
+        Schema::create('departments', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreatePenaltiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penalties');
+        Schema::dropIfExists('departments');
     }
 }

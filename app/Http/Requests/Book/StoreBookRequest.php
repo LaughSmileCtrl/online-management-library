@@ -27,7 +27,7 @@ class StoreBookRequest extends FormRequest
     public function rules()
     {
         return [
-            'isbn' => ['required', 'numeric', Rule::unique('books')->ignore($this->book)],
+            'isbn' => ['required', 'numeric', Rule::unique('books', 'isbn')->ignore($this->book)],
             'title' => 'required',
             'author' => 'required',
             'publisher' => 'required',
@@ -36,6 +36,7 @@ class StoreBookRequest extends FormRequest
             'year' => 'required|digits:4',
             'description' => 'required',
             'quantity' => 'required|gt:0',
+            'image' => 'image|max:1024',
         ];
     }
 
@@ -50,6 +51,7 @@ class StoreBookRequest extends FormRequest
             'year' => 'tahun',
             'description' => 'deskripsi',
             'quantity' => 'jumlah',
+            'image' => 'cover buku',
         ];
     }
 
@@ -62,6 +64,7 @@ class StoreBookRequest extends FormRequest
             'quantity.gt' => 'minimal 1 buah',
             'year.digits' => ':attribute harus 4 digit',
             'gt' => ':attribute harus dipilih',
+            'image' => 'buku harus jpg, jpeg atau png dengan ukuran kurang dari 1 mb',
         ];
     }
 }

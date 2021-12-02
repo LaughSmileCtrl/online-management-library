@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Announcement;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AnnouncementSeeder extends Seeder
 {

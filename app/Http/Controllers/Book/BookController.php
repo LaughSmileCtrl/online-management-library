@@ -6,13 +6,25 @@ use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Http\Requests\Book\StoreBookRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class BookController extends Controller
 {
-    public function catalog()
+    public function catalog(Request $request)
     {
-        return Inertia::render('App/Book/Catalog');
+        $books = Book::when($request->search, function($query, $search) {
+                    return $query->where('isbn', 'LIKE', '%'.$search.'%')
+                            ->orWhere('author', 'LIKE', '%'.$search.'%')
+                            ->orWhere('title', 'LIKE', '%'.$search.'%');
+                })
+                ->when($request->categoryId, function($query, $categoryId) {
+                    return $query->where('category_id', $categoryId);
+                })
+                ->with(['condition', 'category'])
+                ->paginate(15); 
+
+        return Inertia::render('App/Book/Catalog', ['books' => $books]);
     }
 
     /**
@@ -23,15 +35,17 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $books = Book::when($request->search, function($query, $search) {
-                    return $query->where('isbn', 'LIKE', '%'.$search.'%')
-                            ->orWhere('author', 'LIKE', '%'.$search.'%')
-                            ->orWhere('title', 'LIKE', '%'.$search.'%');
+                return $query->where('isbn', 'LIKE', '%'.$search.'%')
+                    ->orWhere('author', 'LIKE', '%'.$search.'%')
+                    ->orWhere('title', 'LIKE', '%'.$search.'%');
                 })
                 ->with(['condition', 'category'])
                 ->paginate(15);
-
+                    
         return Inertia::render('App/Book/BookList', ['books' => $books]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -40,9 +54,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        $formConfig = ['method' => 'post','url' => route('book.store')];
+        $url = route('book.store');
         
-        return Inertia::render('App/Book/BookEntry', ['formConfig' => $formConfig]);
+        return Inertia::render('App/Book/BookEntry', ['url' => $url]);
         
     }
 
@@ -56,7 +70,14 @@ class BookController extends Controller
     {
         $bookValidate = $request->validated();
         
-        Book::create($bookValidate);
+        $book = Book::create($bookValidate);
+
+        if ($request->image) {
+            $path = $request->image
+                    ->storeAs('/images/books', $book->isbn.'_'.date('Y-m-d H:m:i'));
+            $book->image = '/'.$path;
+            $book->save();
+        }
         
         return redirect()->route('book.index')->with([
             'message' => 'Buku '. $request->title .' berhasil ditambah'
@@ -82,11 +103,13 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        $formConfig = ['method' => 'put','url' => route('book.update', $book->id)];
+        $book = $book;
+        $book['_method'] = 'PUT';
+        $url = route('book.update', $book->id);
         
         return Inertia::render('App/Book/BookEntry', [
             'book' => $book, 
-            'formConfig' => $formConfig
+            'url' => $url
         ]);
     }
 
@@ -103,11 +126,20 @@ class BookController extends Controller
 
         $book->update($bookValidate);
 
-        if(isset($bookValidate['image'])) {
-            $book->image = $bookValidate['image'];
-            $book->save();
+        $path = $book->image;
+
+        if ($request->image) {
+            $path = '/'.$request->image
+                ->storeAs('images/books', $book->user_id.'_'.$book->isbn.'_'.date('Y-m-d H:m:i'));
+            
+            if ($book->image != '/images/books/cover.jpg') {
+                Storage::delete($book->image);
+            }
         }
 
+        $book->image = $path;
+        $book->save();
+        
         return redirect()->route('book.index')->with(['message' => 'Buku '.$request->title.' berhasil diubah']);
     }
 
@@ -119,6 +151,10 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
+        if ($book->image != '/images/books/cover.jpg') {
+            Storage::delete($book->image);
+        }
+
         $book->delete();
         
         return back()->with(['message' => 'Buku '. $book->title .' terhapus']);

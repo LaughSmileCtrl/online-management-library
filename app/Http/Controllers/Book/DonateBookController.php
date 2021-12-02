@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Book;
 use App\Http\Controllers\Controller;
 use App\Models\DonateBook;
 use App\Http\Requests\Book\StoreBookRequest;
+use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class DonateBookController extends Controller
@@ -25,9 +27,9 @@ class DonateBookController extends Controller
 
     public function create()
     {
-        $formConfig = ['method' => 'post','url' => route('donate-book.store')];
+        $url = route('donate-book.store');
         
-        return Inertia::render('App/Book/BookEntry', ['formConfig' => $formConfig]);
+        return Inertia::render('App/Book/BookEntry', ['url' => $url]);
     }
 
 
@@ -42,7 +44,14 @@ class DonateBookController extends Controller
         $bookValidate = $request->validated();
         $bookValidate['user_id'] = 1;
 
-        DonateBook::create($bookValidate);
+        $book = DonateBook::create($bookValidate);
+
+        if ($request->image) {
+            $path = $request->image
+                    ->storeAs('images/books', $book->user_id.'_'.$book->isbn.'_'.date('Y-m-d H:m:i'));
+            $book->image = '/'.$path;
+            $book->save();
+        }
         
         return redirect()->route('donate-book.create')->with([
             'message' => 'Buku '. $request->title .' berhasil ditambah'
@@ -57,7 +66,32 @@ class DonateBookController extends Controller
      */
     public function approve(DonateBook $donateBook)
     {
-        dd($donateBook);
+        $newBook = $donateBook->toArray();
+
+        unset($newBook['id']);
+        unset($newBook['user_id']);
+        unset($newBook['created_at']);
+        unset($newBook['updated_at']);
+        
+        $book = Book::create($newBook);
+        $imageName = $donateBook->image;
+
+        if ($image = $donateBook->image) {
+            
+            if ($image != '/images/books/cover.jpg') {
+                $imageName =  '/images/books'.$book->isbn.'_'.date('Y-m-d H:m:i');
+                
+                Storage::move($image, $imageName);
+            }
+                
+    
+            $book->image = $imageName;
+            $book->save();
+            
+            $donateBook->delete();
+        }
+
+        return back()->with(['message' => $newBook['title'].' berhasil ditambah']);
     }
 
     /**
@@ -68,11 +102,13 @@ class DonateBookController extends Controller
      */
     public function edit(DonateBook $donateBook)
     {
-        $formConfig = ['method' => 'put','url' => route('donate-book.update', $donateBook)];
+        $book = $donateBook;
+        $book['_method'] = 'PUT';
+        $url = route('donate-book.update', $donateBook);
         
         return Inertia::render('App/Book/BookEntry', [
             'book' => $donateBook, 
-            'formConfig' => $formConfig
+            'url' => $url,
         ]);
     }
 
@@ -88,11 +124,20 @@ class DonateBookController extends Controller
         $bookValidate = $request->validated();
 
         $donateBook->update($bookValidate);
+        
+        $path = $donateBook->image;
 
-        if(isset($bookValidate['image'])) {
-            $donateBook->image = $bookValidate['image'];
-            $donateBook->save();
+        if ($request->image) {
+            $path = '/'.$request->image
+                ->storeAs('images/books', $donateBook->user_id.'_'.$donateBook->isbn.'_'.date('Y-m-d H:m:i'));
+            
+            if ($donateBook->image != '/images/books/cover.jpg') {
+                Storage::delete($donateBook->image);
+            }
         }
+
+        $donateBook->image = $path;
+        $donateBook->save();
 
         return redirect()->route('donate-book.index')->with(['message' => 'Buku '.$request->title.' berhasil diubah']);
     }
@@ -105,6 +150,10 @@ class DonateBookController extends Controller
      */
     public function destroy(DonateBook $donateBook)
     {
+        if ($donateBook->image != '/images/books/cover.jpg') {
+            Storage::delete($donateBook->image);
+        }
+
         $donateBook->delete();
 
         return back()->with(['message' => 'Buku '. $donateBook->title .' terhapus']);

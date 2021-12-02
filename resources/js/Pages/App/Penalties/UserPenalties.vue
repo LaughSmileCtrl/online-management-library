@@ -3,7 +3,6 @@
   <AuthLayout title="Daftar Denda">
     <div
       class="
-        2xl:w-1/2
         my-10
         bg-white
         rounded-lg
@@ -13,7 +12,7 @@
         p-5
       "
     >
-      <BillPenalties />
+      <BillPenalties :penalties="penalties"/>
     </div>
   </AuthLayout>
 </template>
@@ -23,6 +22,7 @@ import AuthLayout from "@/Layouts/Authenticated.vue";
 import BillPenalties from "@/Components/Tables/BillPenalties.vue";
 
 export default {
+  props:['penalties'],
   components: {
     AuthLayout,
     BillPenalties,

@@ -11,6 +11,15 @@ class UserBook extends Model
 
     protected $table = 'user_book';
 
-    const CREATED_AT = 'borrow_at';
-    const UPDATED_AT = 'return_at';
+    public $timestamps = false;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }

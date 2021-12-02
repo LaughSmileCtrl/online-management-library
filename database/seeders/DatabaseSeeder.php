@@ -16,10 +16,14 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         $this->call([
-            AnnouncementSeeder::class,
-            PenaltySeeder::class,
-            DonateBookSeeder::class,
-            BookSeeder::class
+            AnnouncementTypeSeeder::class,
+            // AnnouncementSeeder::class,
+            BookCategorySeeder::class,
+            BookConditionSeeder::class,
+            DepartmentSeeder::class,
+            // UserDetailSeeder::class,
+            // UserBookSeeder::class,
+            // DonateBookSeeder::class,
         ]);
     }
 }

@@ -21,6 +21,8 @@ class UserBookFactory extends Factory
             'due_at' => $this->faker->dateTimeBetween('now', '+1 week'),
             'borrow_at' => $this->faker->date(),
             'due_at' => $this->faker->dateTimeBetween('now', '+2 week'),
+            'bill' => $this->faker->numberBetween(5,10),
+            'paid_off' => $this->faker->numberBetween(1,5),
         ];
     }
 }

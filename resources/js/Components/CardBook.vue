@@ -16,7 +16,7 @@
         "
     >
         <figure class="hidden md:block">
-            <img src="@/Img/cover.jpg" class="rounded-lg h-60" />
+            <img :src="book.image" class="rounded-lg h-60" style="width: 150px" />
         </figure>
         <div class="max-w-md card-body">
             <h2 class="card-title">
@@ -24,24 +24,27 @@
             </h2>
             <p class="opacity-50">{{ book.author  }}</p>
             <p class="opacity-50">Tahun Terbit: {{ book.year  }}</p>
-            <div v-if="type == 1" class="absolute bottom-9 pb-5">
+            <div v-if="isBorrowed" class="absolute bottom-9 pb-5">
                 Kembalikan Sebelum<br />
                 <p class="opacity-50">
-                    {{ book.returnDate  }}
+                    {{ dueAt  }}
                 </p>
             </div>
-            <p class="opacity-50">ISBN : {{ book.author  }}</p>
+            <p class="opacity-50">ISBN : {{ book.isbn }}</p>
             <div class="btn-group absolute bottom-0 right-0 shadow-2xl">
                 <button class="btn btn-sm btn-neutral rounded-none rounded-tl" @click="openDesc">
                     Detail
                 </button>
-                <button :class="btnClassify" @click="showModal">
-                    {{ btnText }}
+               <button class="btn btn-warning btn-sm rounded-none" @click="returnAction" v-if="isBorrowed">
+                    kembalikan
+                </button>
+                <button class="btn btn-info btn-sm rounded-none" @click="borrowAction" v-if="!isBorrowed && isBookAvailable">
+                    pinjam
                 </button>
             </div>
         </div>
     </div>
-    <BookDescription v-show="false" ref="bookDescription" />
+    <BookDescription v-show="false" ref="bookDescription" :book="book" />
 	<Agreement v-show="false" v-if="isRendered" ref="modal" />
 </template>
 
@@ -56,26 +59,12 @@ export default {
         BookDescription,
 		Agreement,
     },
-    emits: ["agreement"],
     data() {
         return {
-            cardTypes: [
-                {
-                    type: "borrow",
-                    text: "pinjam",
-                    btnClass: "info",
-                },
-                {
-                    type: "return",
-                    text: "kembalikan",
-                    btnClass: "warning",
-                },
-            ],
 			isRendered: !this.isAgree,
         };
     },
     props: {
-        type: Number,
         isAgree: {
             type: Boolean,
             default: true,
@@ -83,6 +72,7 @@ export default {
 		book: {
 			type: Object,
 			default: {
+                id: 0,
 				title: 'Xxxx XX Xxx',
 				author: 'xxxx',
 				year: '0000',
@@ -90,17 +80,22 @@ export default {
 
 			}
 		},
+        isBorrowed: {
+            type: Boolean,
+            default: false,
+        },
+        dueAt: {
+            type: String,
+            default: null,
+        }
     },
     computed: {
-        btnText() {
-            return this.cardTypes[this.type].text;
-        },
-        btnClassify() {
-            return "btn btn-" + this.cardTypes[this.type].btnClass + " btn-sm rounded-none rounded-br";
+        isBookAvailable() {
+            return (this.book.quantity - this.book.borrowed_qty) > 0;
         },
     },
     methods: {
-        showModal() {
+        showAggrement() {
             if (this.type == 0 && !this.isAgree) {
                 this.$swal({
                     title: "Persetujuan",
@@ -112,22 +107,53 @@ export default {
                 this.openAlert();
             }
         },
-        openAlert() {
+        returnAction() {
             this.$swal({
                 title: "Anda yakin?",
                 text:
-                    "Apakah anda benar akan " +
-                    this.cardTypes[this.type].text +
-                    " buku ini?",
+                    "Apakah anda benar akan mengembalikan buku ini?",
                 icon: "qustion",
                 showCloseButton: true,
                 showCancelButton: true,
-                confirmButtonText: "Ya, " + this.cardTypes[this.type].text,
+                confirmButtonText: "Ya, kembalikan",
                 cancelButtonText: "Tidak",
                 reverseButtons: true,
             }).then((result) => {
                 if (result.isConfirmed) {
-                    this.$swal("Tersimpan", "", "success");
+                    this.$inertia.delete(route('book-borrow.destroy', this.book.id), {
+                        onSuccess: page => {
+                            this.$swal(page.props.flash.message, '', 'success');
+                            this.$inertia.reload({ only: ['books'] });
+                        }, 
+                        onError: errors => {
+                            this.$swal('gagal ', '', 'error');
+                        },
+                    });
+                }
+            });
+        },
+        borrowAction() {
+            this.$swal({
+                title: "Anda yakin?",
+                text:
+                    "Apakah anda benar akan meminjam buku ini?",
+                icon: "qustion",
+                showCloseButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Ya, pinjam",
+                cancelButtonText: "Tidak",
+                reverseButtons: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.$inertia.post(route('book-borrow.store'), {id: this.book.id}, {
+                        onSuccess: page => {
+                            this.$swal(page.props.flash.message, '', 'success');
+                            this.$inertia.reload({ only: ['books'] });
+                        }, 
+                        onError: errors => {
+                            this.$swal('gagal ', '', 'error');
+                        },
+                    });
                 }
             });
         },

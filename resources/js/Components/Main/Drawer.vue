@@ -171,19 +171,22 @@
             <NavLink :href="route('book.catalog')" :active="route().current('book.catalog')" icon="fa fa-book">Katalog</NavLink>
           </li>
           <li class="items-center">
-            <NavLink :href="route('user.book')" :active="route().current('user.book')" icon="fa fa-undo">Pengembalian</NavLink>
+            <NavLink :href="route('book-borrow.index')" :active="route().current('book-borrow.index')" icon="fa fa-undo">Pengembalian</NavLink>
           </li>
           <li class="items-center">
             <NavLink :href="route('donate-book.create')" :active="route().current('donate-book.create')" icon="fa fa-hand-holding-heart">Sumbang Buku</NavLink>
           </li>
           <li class="items-center">
-            <NavLink :href="route('penalties.show')" :active="route().current('penalties.show')" icon="fas fa-file-invoice-dollar">Tagihan Denda</NavLink>
+            <NavLink :href="route('penalties.show', 32)" :active="route().current('penalties.show')" icon="fas fa-file-invoice-dollar">Tagihan Denda</NavLink>
           </li>
           <li class="items-center">
             <NavLink :href="route('user.index')" :active="route().current('user.index')" icon="fas fa-users">Member</NavLink>
           </li>
           <li class="items-center">
             <NavLink :href="route('book.index')" :active="route().current('book.index')" icon="fas fa-stream">Tabel Buku</NavLink>
+          </li>
+          <li class="items-center">
+            <NavLink :href="route('book-borrow.get-all')" :active="route().current('book-borrow.get-all')" icon="fas fa-th-list">List Buku Dipinjam</NavLink>
           </li>
           <li class="item-center">
             <NavLink :href="route('penalties.index')" :active="route().current('penalties.index')" icon="fas fa-money-bill-wave">List Denda</NavLink>
