@@ -136,7 +136,7 @@
                 "
                 href="javascript:void(0)"
               >
-                Tailwind Starter Kit
+                Onary
               </a>
             </div>
             <div class="w-6/12 flex justify-end">
@@ -167,37 +167,37 @@
           <li class="items-center">
 				    <NavLink :href="route('dashboard')" :active="route().current('dashboard')" icon="fas fa-tv">Dashboard</NavLink>
           </li>
-          <li class="items-center">
+          <li v-if="!$page.props.auth.user.is_admin" class="items-center">
             <NavLink :href="route('book.catalog')" :active="route().current('book.catalog')" icon="fa fa-book">Katalog</NavLink>
           </li>
-          <li class="items-center">
+          <li v-if="!$page.props.auth.user.is_admin" class="items-center">
             <NavLink :href="route('book-borrow.index')" :active="route().current('book-borrow.index')" icon="fa fa-undo">Pengembalian</NavLink>
           </li>
-          <li class="items-center">
+          <li v-if="!$page.props.auth.user.is_admin" class="items-center">
             <NavLink :href="route('donate-book.create')" :active="route().current('donate-book.create')" icon="fa fa-hand-holding-heart">Sumbang Buku</NavLink>
           </li>
-          <li class="items-center">
-            <NavLink :href="route('penalties.show', 32)" :active="route().current('penalties.show')" icon="fas fa-file-invoice-dollar">Tagihan Denda</NavLink>
+          <li v-if="!$page.props.auth.user.is_admin" class="items-center">
+            <NavLink :href="route('penalties.show', $page.props.auth.user.id)" :active="route().current('penalties.show')" icon="fas fa-file-invoice-dollar">Tagihan Denda</NavLink>
           </li>
-          <li class="items-center">
-            <NavLink :href="route('user.index')" :active="route().current('user.index')" icon="fas fa-users">Member</NavLink>
+          <li v-if="$page.props.auth.user.is_admin" class="items-center">
+            <NavLink :href="route('user.index')" :active="route().current('user.index')" icon="fas fa-users">Anggota</NavLink>
           </li>
-          <li class="items-center">
+          <li v-if="$page.props.auth.user.is_admin" class="items-center">
             <NavLink :href="route('book.index')" :active="route().current('book.index')" icon="fas fa-stream">Tabel Buku</NavLink>
           </li>
-          <li class="items-center">
-            <NavLink :href="route('book-borrow.get-all')" :active="route().current('book-borrow.get-all')" icon="fas fa-th-list">List Buku Dipinjam</NavLink>
+          <li v-if="$page.props.auth.user.is_admin" class="items-center">
+            <NavLink :href="route('book-borrow.get-all')" :active="route().current('book-borrow.get-all')" icon="fas fa-th-list">Daftar Buku Dipinjam</NavLink>
           </li>
-          <li class="item-center">
-            <NavLink :href="route('penalties.index')" :active="route().current('penalties.index')" icon="fas fa-money-bill-wave">List Denda</NavLink>
+          <li v-if="$page.props.auth.user.is_admin" class="items-center">
+            <NavLink :href="route('penalties.index')" :active="route().current('penalties.index')" icon="fas fa-money-bill-wave">Daftar Denda</NavLink>
           </li>
-          <li class="item-center">
-            <NavLink :href="route('donate-book.index')" :active="route().current('donate-book.index')" icon="fas fa-book-open">List Donasi Buku</NavLink>
+          <li v-if="$page.props.auth.user.is_admin" class="items-center">
+            <NavLink :href="route('donate-book.index')" :active="route().current('donate-book.index')" icon="fas fa-book-open">Daftar Donasi Buku</NavLink>
           </li>
-          <li class="item-center">
+          <li v-if="$page.props.auth.user.is_admin" class="items-center">
             <NavLink :href="route('announcement.index')" :active="route().current('announcement.index')" icon="fas fa-bullhorn">Pengumuman</NavLink>
           </li>
-          <li class="item-center">
+          <li v-if="$page.props.auth.user.is_admin" class="items-center">
             <NavLink :href="route('statistics.index')" :active="route().current('statistics.index')" icon="fas fa-chart-bar">Statistik</NavLink>
           </li>
         </ul>

@@ -45,7 +45,7 @@
 		</div>
     </div>
     <div class="flex flex-wrap justify-center mb-9">
-    	<CardBook v-for="(book, index) of books.data" :key="index" type="0" :isAgree="false" :book="book" />
+    	<CardBook v-for="(book, index) of books.data" :key="index" :isBorrowed="idBooksBorrow.includes(book.id)" :isAgree="false" :book="book" />
     </div>
     <div class="flex flex-wrap justify-center mb-9">
 		<Pagination :links="books.links" />
@@ -67,7 +67,7 @@ export default {
 			categoryId: ''
 		}
 	},
-	props: ['books'],
+	props: ['books', 'idBooksBorrow'],
     components: {
         Head,
         AuthLayout,

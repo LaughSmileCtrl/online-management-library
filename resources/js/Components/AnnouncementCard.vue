@@ -31,12 +31,12 @@
 export default {
     computed: {
         setClass() {
-            return (this.announcement.type.id == 1)
+            return (this.announcement.type_id == 1)
                 ? 'badge badge-outline-white badge-accent block mb-2'
                 : 'badge badge-outline-white badge-secondary block mb-2'
         }, 
         setIcon() {
-            return (this.announcement.type.id == 1)
+            return (this.announcement.type_id == 1)
                 ? 'fas fa-info-circle'
                 : 'fas fa-exclamation-circle'
         }

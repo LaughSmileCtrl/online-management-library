@@ -5,14 +5,20 @@ namespace App\Http\Controllers\Book;
 use App\Http\Controllers\Controller;
 use App\Models\UserBook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class BookBorrowController extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware('admin')->only('getAll');
+    }
+
+
     public function index()
     {
-        $user_id = 3;
+        $user_id = Auth::id();
         $booksBorrow = UserBook::where('user_id', $user_id)
                 ->where('return_at', null)
                 ->with('book.category', 'book.condition')
@@ -32,7 +38,7 @@ class BookBorrowController extends Controller
     }
 
     public function store(Request $request) {
-        $user_id = 3;
+        $user_id = Auth::id();
         $bookBorrow = new UserBook;
 
         $bookBorrow->user_id = $user_id;
@@ -54,7 +60,7 @@ class BookBorrowController extends Controller
 
     public function destroy($id)
     {
-        $user_id = 3;
+        $user_id = Auth::id();
         $bookBorrow = UserBook::where('user_id', $user_id)
                 ->where('book_id', $id)
                 ->where('return_at', null)

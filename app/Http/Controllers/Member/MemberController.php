@@ -17,6 +17,7 @@ class MemberController extends Controller
                     return $query->where('name', 'LIKE', '%'.$search.'%')
                             ->orWhere('email', 'LIKE', '%'.$search.'%');
                 })
+                ->where('is_admin', false)
                 ->with(['detail.department'])
                 ->paginate(15);
 
@@ -53,13 +54,18 @@ class MemberController extends Controller
  
     public function destroy(User $user)
     {
-        if ($user->books != null) {
+        if ($user->books != null ) {
             foreach ($user->books as $book) {
                 if ($book->pivot->borrow_at 
                         != $book->pivot->return_at) {
                     return back()->with(['message' => $user->name .' tidak dapat dihapus']);
                 }
             }
+        }
+
+        if (count($user->donateBooks)) {
+            // dd('lol');
+            return back()->with(['message' => $user->name .' masih mendonasikan buku']);
         }
 
         $user->delete();

@@ -9,7 +9,7 @@
         rounded-full
       "
     >
-      <img src="/images/avatars/avatar.jpg" class="mask mask-circle" />
+      <img :src="$page.props.auth.user.image" class="mask mask-circle w-10 h-10" />
     </div>
     <ul
       tabindex="0"
@@ -27,10 +27,10 @@
       "
     >
       <li>
-        <Link :href="route('user.profile')"><i class="fa fa-user mr-2"></i> Ubah Profile</Link>
+        <Link :href="route('profile.index')"><i class="fa fa-user mr-2"></i> Ubah Profile</Link>
       </li>
       <li class="border-t-2">
-        <a><i class="fa fa-sign-out-alt mr-2"></i> Log Out</a>
+        <Link @click="logout"><i class="fa fa-sign-out-alt mr-2"></i> Log out</Link>
       </li>
     </ul>
   </div>
@@ -42,6 +42,11 @@ import { Link } from '@inertiajs/inertia-vue3'
 export default {
   components: {
     Link,
+  },
+  methods: {
+    logout() {
+      this.$inertia.post(route('logout'));
+    }
   }
 }
 </script>

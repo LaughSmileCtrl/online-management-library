@@ -7,11 +7,18 @@ use App\Models\DonateBook;
 use App\Http\Requests\Book\StoreBookRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class DonateBookController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin')->except(['create', 'store']);
+    }
+
     public function index(Request $request)
     {
         $books = DonateBook::when($request->search, function($query, $search) {
@@ -19,10 +26,10 @@ class DonateBookController extends Controller
                         ->orWhere('author', 'LIKE', '%'.$search.'%')
                         ->orWhere('title', 'LIKE', '%'.$search.'%');
             })
-            ->with(['condition', 'category'])
+            ->with(['condition', 'category', 'user'])
             ->paginate(15);
         
-        return Inertia::render('App/Book/BookList', ['books' => $books]);
+        return Inertia::render('App/Book/DonateBookList', ['books' => $books]);
     }
 
     public function create()
@@ -42,7 +49,7 @@ class DonateBookController extends Controller
     public function store(StoreBookRequest $request)
     {
         $bookValidate = $request->validated();
-        $bookValidate['user_id'] = 1;
+        $bookValidate['user_id'] = Auth::id();
 
         $book = DonateBook::create($bookValidate);
 
@@ -79,7 +86,7 @@ class DonateBookController extends Controller
         if ($image = $donateBook->image) {
             
             if ($image != '/images/books/cover.jpg') {
-                $imageName =  '/images/books'.$book->isbn.'_'.date('Y-m-d H:m:i');
+                $imageName =  '/images/books/'.$book->isbn.'_'.date('Y-m-d H:m:i');
                 
                 Storage::move($image, $imageName);
             }

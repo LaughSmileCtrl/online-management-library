@@ -46,12 +46,16 @@ class User extends Authenticatable
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         'is_admin' => false,
         'is_agree' => false,
-        'image' => 'images/avatars/avatar.jpg',
+        'image' => '/images/avatars/avatar.jpg',
     ];
 
     public function detail()
     {
-        return $this->hasOne(UserDetail::class);
+        return $this->hasOne(UserDetail::class)->withDefault([
+            'nrp' => 0,
+            'address' => '',
+            'department_id' => 0,
+        ]);
     }
 
     public function donateBooks()

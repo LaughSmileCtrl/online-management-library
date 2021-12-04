@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\UserBook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class PenaltiesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin')->except('show');
+    }
+
     public function index(Request $request)
     {
         $penalties = UserBook::select('id', 'user_id', 'bill', 'paid_off')
@@ -24,7 +30,7 @@ class PenaltiesController extends Controller
 
     public function show($id)
     {
-        $penalties = UserBook::where('user_id', $id)
+        $penalties = UserBook::where('user_id', Auth::id())
                 ->whereRaw('bill > paid_off')
                 ->with('book')
                 ->get();

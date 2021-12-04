@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AnnouncementRequest;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class AnnouncementController extends Controller
@@ -32,7 +33,7 @@ class AnnouncementController extends Controller
     {
 
         $announcementForm = $request->validated();
-        $announcementForm['created_by'] = 3;
+        $announcementForm['created_by'] = Auth::id();
 
         Announcement::create($announcementForm);
 

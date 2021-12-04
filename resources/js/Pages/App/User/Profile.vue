@@ -5,13 +5,13 @@
             <div class="w-full h-full">
                 <div class="bg-white h-full rounded-xl shadow-md p-10">
                     <h2 class="text-xl mb-5">Ubah Profile</h2>
-                    <form @submit.prevent="submit" class="grid gap-4">           
+                    <form @submit.prevent="profileSubmit" class="grid gap-4">           
                         <div class="w-full grid grid-cols-1 xl:grid-cols-3 gap-5">
                             <div class="col-span-1">
                                 <div class="grid justify-items-center w-3/2 ">
                                     <div class="avatar">
                                         <div class="mb-8 rounded-box w-full h-auto ring ring-primary ring-offset-base-100 ring-offset-2">
-                                            <img src="/images/avatar/avatar.jpg">
+                                            <img :src="image">
                                         </div>
                                     </div> 
                                 </div>
@@ -28,7 +28,8 @@
                                                 @change="uploadedImage($event)"
                                             />
                                         </label>
-                                        <button @click="form.reset()" type="button" class="btn btn-outline btn-error inline-block ml-3">Reset</button>
+                                        <button @click="reset" type="button" class="btn btn-outline btn-error inline-block ml-3">Reset</button>
+                                        <p class="ml-3 text-sm text-red-500" v-if="form.errors.image">{{form.errors.image}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +68,7 @@
                                         select select-bordered select-primary
                                         w-full
                                     "
-                                    v-model.number="form.department_id"
+                                    v-model.number="userDetail.department_id"
                                 >
                                     <option disabled="disabled" selected="selected">
                                         Pilih Kondisi
@@ -75,7 +76,7 @@
                                     <option value="1">D3 Informatika</option>
                                     <option value="2">D3 Multimedia</option>
                                 </select>
-                                <p class="ml-3 text-sm text-red-500" v-if="form.errors.department_id">{{form.errors.department_id}}</p>
+                                <p class="ml-3 text-sm text-red-500" v-if="userDetail.errors.department_id">{{userDetail.errors.department_id}}</p>
                             </div>
                             <div class="form-control">
                                 <label class="label">
@@ -85,9 +86,9 @@
                                     type="text"
                                     placeholder="NRP"
                                     class="input input-primary input-bordered"
-                                    v-model="form.nrp"
+                                    v-model="userDetail.nrp"
                                 />
-                                <p class="ml-3 text-sm text-red-500" v-if="form.errors.nrp">{{form.errors.nrp}}</p>
+                                <p class="ml-3 text-sm text-red-500" v-if="userDetail.errors.nrp">{{userDetail.errors.nrp}}</p>
                             </div>
                         </div>
                         <div class="form-control">
@@ -97,9 +98,9 @@
                             <textarea
                                 class="textarea h-24 textarea-bordered textarea-primary"
                                 placeholder="Alamat Anda"
-                                v-model="form.address"
+                                v-model="userDetail.address"
                             ></textarea>
-                            <p class="ml-3 text-sm text-red-500" v-if="form.errors.address">{{form.errors.address}}</p>
+                            <p class="ml-3 text-sm text-red-500" v-if="userDetail.errors.address">{{userDetail.errors.address}}</p>
                         </div>
                         <button class="btn btn-primary justify-self-end">
                             Simpan
@@ -107,7 +108,7 @@
                     </form>
                 </div>
             </div>
-            <div class="w-full h-full"> 
+            <!-- <div class="w-full h-full"> 
                 <div class="bg-white rounded-xl shadow-md p-10">
                     <h2 class="text-xl mb-5">Ubah Password</h2>
                     <form @submit.prevent="submitPassword" class="grid gap-5">               
@@ -153,40 +154,73 @@
                         </button>
                     </form>
                 </div>
-            </div>
+            </div> -->
         </div>
     </AuthLayout>
 </template>
 
 <script>
+import { Head } from "@inertiajs/inertia-vue3"
 import AuthLayout from "@/Layouts/Authenticated.vue";
 
 export default {
     components: {
+        Head,
         AuthLayout,
     
     },
     data() {
         return {
-            form: this.$inertia.form(this.user),
+            form: this.$inertia.form({
+                email: this.$page.props.auth.user.email,
+                name: this.$page.props.auth.user.name,
+                image: this.$page.props.auth.user.image,
+                _method: 'PUT',
+            }),
+            userDetail: this.$inertia.form(this.detail),
             formPassword: this.$inertia.form({
                 currentPassword: '',
                 newPassword: '',
                 confirmPassword: '',
-            })
+            }),
+            image: this.$page.props.auth.user.image,
         }
     },
     props: {
-        user: {
+        detail: {
             type: Object,
             default: {
-                email: '',
-                name: '',
                 department_id: 0,
                 nrp: '',
                 address: '',
             }
+
+        }
+    }, 
+    methods: {
+        uploadedImage(event) {
+            var img = event.target.files[0];
+            this.form.image = img;
+            this.image = URL.createObjectURL(img);
         },
+        reset() {
+            this.form.reset();
+            this.userDetail.reset();
+            this.image = this.$page.props.auth.user.image;
+
+        }, 
+        profileSubmit() {
+            if (typeof this.form.image == 'string') {
+                delete this.form.image;
+            }
+
+            this.form.post(route('profile.update', this.$page.props.auth.user.id), {
+                onSuccess: page => {
+                    this.$inertia.reload();
+                    this.userDetail.post(route('profile.store'));
+                }
+            });
+        }
     }
 };
 </script>

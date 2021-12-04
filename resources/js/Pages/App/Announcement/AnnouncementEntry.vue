@@ -1,5 +1,6 @@
 <template>
-    <AuthLayout>
+    <Head title="Buat Pengumuman" />
+    <AuthLayout title="Buat Pengumuman">
         <div class="py-5">
             <Link :href="route('announcement.index')" class="btn">
                 <i class="fas fa-arrow-left"></i>&nbsp; Kembali
@@ -61,7 +62,7 @@
 
 <script>
 import AuthLayout from "@/Layouts/Authenticated.vue";
-import { Link } from "@inertiajs/inertia-vue3";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 
 export default {
     data() {
@@ -72,6 +73,7 @@ export default {
     components: {
         AuthLayout,
         Link,
+        Head
     },
     props: {
         announcement : {

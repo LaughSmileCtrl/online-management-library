@@ -1,15 +1,22 @@
 <template>
     <div>
-
-        <div class="flex flex-wrap w-full bg-white justify-center">
-            <div class="flex flex-wrap justify-center w-2/3 md:w-1/3 h-full pb-10">
-                <img :src="book.image" class="rounded-lg h-56" />
+    
+        <div class="flex flex-wrap w-full bg-white justify-center" ref="description">
+            <div class="flex flex-wrap w-2/3 md:w-1/3 h-full pb-10">
+                <div class="h-auto w-full flex justify-center">
+                    <img :src="book.image" class="rounded-lg h-56" />
+                </div>
+                <div class="flex flex-wrap justify-center w-full my-5">
+                    <Link class="btn btn-sm" :href="route('print-book-desc', book.id)">Print</Link>
+                </div>
             </div>
             <div class="w-2/3 px-8 text-left">
                 <h3 class="font-bold text-2xl mb-2">
                     {{ book.title }}
                 </h3>
-                <h5 class="font-bold inline-block">Penulis</h5>
+                <h5 class="font-bold inline-block">ISBN</h5>
+                <h4>{{ book.isbn }}</h4>
+                <h5 class="font-bold inline-block mt-3">Penulis</h5>
                 <h4>{{ book.author }}</h4>
                 <h5 class="font-bold inline-block mt-3">Penerbit</h5>
                 <h4>{{ book.publisher }}</h4>
@@ -33,8 +40,18 @@
 </template>
 
 <script>
+import { Link } from '@inertiajs/inertia-vue3';
 
 export default {
-    props: ['book']
+    components: {
+        Link,
+    },
+    data() {
+        return {
+            temp: '',
+        }
+    },
+    props: ['book'],
+
 }
 </script>

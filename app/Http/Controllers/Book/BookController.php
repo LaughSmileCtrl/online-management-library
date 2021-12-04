@@ -5,14 +5,28 @@ namespace App\Http\Controllers\Book;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Http\Requests\Book\StoreBookRequest;
+use App\Models\UserBook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class BookController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin')->except('catalog');
+    }
+
     public function catalog(Request $request)
     {
+        $user_id = $request->user()->id;
+        $idBooksBorrow = DB::table('user_book')
+            ->select('book_id')
+            ->where('user_id', 1)
+            ->where('return_at', null)
+            ->pluck('book_id');
+
         $books = Book::when($request->search, function($query, $search) {
                     return $query->where('isbn', 'LIKE', '%'.$search.'%')
                             ->orWhere('author', 'LIKE', '%'.$search.'%')
@@ -24,7 +38,10 @@ class BookController extends Controller
                 ->with(['condition', 'category'])
                 ->paginate(15); 
 
-        return Inertia::render('App/Book/Catalog', ['books' => $books]);
+        return Inertia::render('App/Book/Catalog', [
+            'books' => $books,
+            'idBooksBorrow' => $idBooksBorrow,
+        ]);
     }
 
     /**

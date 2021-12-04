@@ -18,12 +18,14 @@
 </template>
 
 <script>
+import { Head } from "@inertiajs/inertia-vue3";
 import AuthLayout from "@/Layouts/Authenticated.vue";
 import BillPenalties from "@/Components/Tables/BillPenalties.vue";
 
 export default {
   props:['penalties'],
   components: {
+    Head,
     AuthLayout,
     BillPenalties,
   },

@@ -12,6 +12,7 @@ class UserDetail extends Model
     protected $fillable = [
         'nrp',
         'department_id',
+        'address',
     ];
 
     protected $attributes = [

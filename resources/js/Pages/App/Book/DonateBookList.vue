@@ -1,10 +1,10 @@
 <template>
-    <Head title="Anggota" />
-    <AuthLayout title="Anggota">
+    <Head title="Daftar Donasi Buku" />
+    <AuthLayout title="Daftar Donasi Buku">
         <div class="grid grid-cols-2 justify-items-stretch  bg-gray-100 py-5 mb-4">
             <div class="justify-self-start my-3 md:my-0">
-                <Link :href="route('user.create')" class="btn btn-primary">
-                    <i class="fa fa-plus"></i>&nbsp; Tambah Member
+                <Link :href="route('book.create')" class="btn btn-primary" v-if="route().current('book.index')">
+                    <i class="fa fa-plus"></i>&nbsp; Tambah Buku
                 </Link>
             </div>
             <div class="justify-self-end form-control w-full md:w-56 max-w-xs  my-3 md:my-0">
@@ -19,39 +19,46 @@
                 </div>
             </div>
         </div>
-		<div id="book-table" class="my-5">
-            <UserTable :users="users.data" />
-            <Pagination :links="users.links" />
+        <div id="book-table" class="my-5">
+            <DonateBookTable :books="books.data" />
+            <Pagination :links="books.links" />
         </div>
     </AuthLayout>
 </template>
 
 <script>
 import AuthLayout from "@/Layouts/Authenticated.vue";
-import {Head, Link } from "@inertiajs/inertia-vue3";
-import UserTable from "@/Components/Tables/UserTable.vue";
+import { Head, Link } from "@inertiajs/inertia-vue3";
+import DonateBookTable from "@/Components/Tables/DonateBookTable.vue";
 import Pagination from "@/Components/Pagination.vue";
 
 export default {
-	props: ['users'],
+    props: ["books"],
     data() {
         return {
             searchQuery: '',
         };
     },
     components: {
-        Head,
         AuthLayout,
         Link,
-        UserTable,
-		Pagination
+        Head,
+        DonateBookTable,
+        Pagination,
+    },
+    computed : {
+        prefix() {
+            return (route().current('book.*')) 
+                ? 'book'
+                : 'donate-book';
+        }
     },
     methods: {
         search() {
-            this.$inertia.get(route('user.index'), {search: this.searchQuery}, {
+            this.$inertia.get(route(this.prefix+'.index'), {search: this.searchQuery}, {
                 preserveState: true,
             });
         }
-    }
+    },
 };
 </script>

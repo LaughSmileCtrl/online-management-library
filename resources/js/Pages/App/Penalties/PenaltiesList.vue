@@ -1,6 +1,6 @@
 <template>
-    <Head title="Denda" />
-    <AuthLayout title="Denda">
+    <Head title="Daftar Denda" />
+    <AuthLayout title="Daftar Denda">
         <div
             class="grid grid-cols-2 justify-items-stretch bg-gray-100 py-5 mb-4"
         >
@@ -36,12 +36,14 @@
 </template>
 
 <script>
+import {Head} from "@inertiajs/inertia-vue3";
 import AuthLayout from "@/Layouts/Authenticated.vue";
 import PenaltiesTable from "@/Components/Tables/PenaltiesTable.vue";
 import Pagination from "@/Components/Pagination.vue";
 
 export default {
     components: {
+        Head,
         AuthLayout,
         PenaltiesTable,
 		Pagination,

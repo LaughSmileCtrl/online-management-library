@@ -1,6 +1,6 @@
 <template>
     <Head title="Buku yang dipinjam"></Head>
-    <AuthLayout title="List Buku Pinjam">
+    <AuthLayout title="Daftar Buku Dipinjam">
     <div class="flex flex-wrap justify-center my-9">
         <CardBook v-for="(bookBorrow, index) of booksBorrow.data" 
             :key="index" 

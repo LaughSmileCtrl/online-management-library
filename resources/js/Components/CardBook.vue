@@ -24,7 +24,7 @@
             </h2>
             <p class="opacity-50">{{ book.author  }}</p>
             <p class="opacity-50">Tahun Terbit: {{ book.year  }}</p>
-            <div v-if="isBorrowed" class="absolute bottom-9 pb-5">
+            <div v-if="isBorrowed && !route().current('book.catalog')" class="absolute bottom-9 pb-5">
                 Kembalikan Sebelum<br />
                 <p class="opacity-50">
                     {{ dueAt  }}
