@@ -31,7 +31,7 @@
                     <td>{{ (new Date(user.created_at)).toLocaleDateString('id-ID') }}</td>
                     <td v-if="user.detail">{{ user.detail.nrp }}</td>
                     <td v-else></td>
-                    <td v-if="user.detail">{{ user.detail.department.name }}</td>
+                    <td v-if="user.detail.department_id != 0">{{ user.detail.department.name }}</td>
                     <td v-else></td>
                     <th>
                         <div data-tip="hapus" class="tooltip">
