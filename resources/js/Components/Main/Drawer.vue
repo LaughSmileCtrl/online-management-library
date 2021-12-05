@@ -75,6 +75,7 @@
         <ApplicationLogo
           class="w-10 h-10 mr-2 fill-current text-gray-500 inline-block"
         />
+        Onary
       </Link>
       <!-- User -->
       <ul class="md:hidden items-center flex flex-wrap list-none">

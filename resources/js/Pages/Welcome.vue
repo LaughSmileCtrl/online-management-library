@@ -4,9 +4,8 @@
     <header class="text-blue-600 body-font">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium items-center text-blue-900 mb-4 md:mb-0">
-                <ApplicationLogo
-                    class="w-10 h-10 mr-2 fill-current text-gray-500 inline-block"
-                />
+                
+                <span class="ml-3 text-xl">Onary</span>
             </a>
             <nav v-if="canLogin" class="md:ml-auto flex flex-wrap items-center text-base justify-center">
                 <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="text-sm text-blue-700">
@@ -53,13 +52,11 @@
 
 <script>
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 
 export default {
     components: {
       Head,
       Link,
-      ApplicationLogo,
     },
     props: {
         canLogin: Boolean,
