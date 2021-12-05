@@ -11,7 +11,7 @@
                 <div class="relative">
                     <input
                     type="text"
-                    placeholder="Search (nama, email)"
+                    placeholder="Search (isbn, author, title)"
                     class="w-full input input-primary rounded-full "
                     v-model="searchQuery"
                     @keyup="search"
